@@ -1,0 +1,20 @@
+h1{
+ display: flex;
+ justify-content: center;
+ margin-right: 5%;
+ color: #00865d;
+ outline: #6b8600 5px solid;
+}
+
+body{
+    background-color: #dde7ff;
+}
+
+#botao-email{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-right: 5%;
+     align-items: center;
+    outline: #d08007 5px solid;
+}
