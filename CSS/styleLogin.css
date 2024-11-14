@@ -1,12 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Kode+Mono:wght@500&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
-h1{
+h1{/*não alterar mais*/
  color: #5e0000;
- font-family:'Courier New', Courier, monospace
-}
+ font-size: Kode Mono;
+}/*não alterar mais*/
 
 body{/*não alterar mais*/
     background-color:#829d74;
-    font-family:'Courier New', Courier, monospace; 
+   font-size: Kode Mono;
 }/*não alterar mais*/
 
 .box-imagem{ /*não alterar mais*/
@@ -33,15 +34,16 @@ body{/*não alterar mais*/
   color: rgb(136, 14, 14); /* Cor do texto */
   margin: 50px auto;
   text-align: center;
+  outline: #829d74 4px solid;
 }/*não alterar mais*/
 
-#input-email {
+#input-email {/*não alterar mais*/
   display: flex;
   flex-direction: column;
   align-items: center;
-}
+}/*não alterar mais*/
 
-#acessar-botao {
+#acessar-botao {/*não alterar mais*/
   color: #5e0000;;
   background-color: #ffffff; /* Fundo opaco */
   border: 2px solid #ffffff;;
@@ -50,7 +52,8 @@ body{/*não alterar mais*/
   transition: background-color 0.3s ease;
   cursor: pointer;
   margin: 10%;
-}
+  margin-right: 25px;
+}/*não alterar mais*/
 
 #acessar-botao:hover {
   background-color: #5e0000;
