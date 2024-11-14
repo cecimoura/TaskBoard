@@ -1,81 +1,69 @@
 
-
-
-
 h1{
- display: flex;
- justify-content: center;
- margin-right: 5%;
- color: #00865d;
+ color: #5e0000;
  font-family:'Courier New', Courier, monospace
 }
 
-body{
-    background-color: #dde7ff;
+body{/*não alterar mais*/
+    background-color:#829d74;
     font-family:'Courier New', Courier, monospace; 
-    color: #00865d;
-   
-}
+}/*não alterar mais*/
 
-.box-imagem{
+.box-imagem{ /*não alterar mais*/
   background-image: url(/IMAGENS/baixados.gif);
-  border-radius: 8px;
-  height: 50%;
-  
-}
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 10px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  max-width: 400%; /* Largura máxima do box */
+  margin-top: 10%;
+} /*não alterar mais*/
 
 
-
-
-
-
-.box-login {
+.box-login {/*não alterar mais*/
   width: 100%;
-  max-width: 400px; /* Largura máxima do box */
+  max-width: 400px;
   padding: 20px;
   border-radius: 8px;
-  background-color: #5f857a;
-  background-size: cover;
-  background-position: center;
+  background-color: rgba(255, 255, 255, 0.8); /* Fundo com 80% de opacidade */
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+  color: rgb(136, 14, 14); /* Cor do texto */
+  margin: 50px auto;
+  text-align: center;
+}/*não alterar mais*/
+
+#input-email {
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: white; /* Cor do texto para contrastar com o fundo */
-  margin: 50px auto; /* Centraliza na página */
-  text-align: center;
 }
 
-
-
-
-#botao-email{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    margin-right: 5%;
-    align-items: center;
-    font-family:'Courier New', Courier, monospace
-    
-}
-
-#acessar-botao{
-  color: #d08007;
-  margin: 1%;
+#acessar-botao {
+  color: #5e0000;;
+  background-color: #ffffff; /* Fundo opaco */
+  border: 2px solid #ffffff;;
+  padding: 4px 4px;
   border-radius: 5px;
-  border-color: #ffffff;
   transition: background-color 0.3s ease;
+  cursor: pointer;
+  margin: 10%;
 }
 
- /* Estilo ao passar o mouse */
- #acessar-botao:hover {
-  background-color: #d08007;
+#acessar-botao:hover {
+  background-color: #5e0000;
   color: white;
-  border-color: #d08007;
-  border-radius: 5px;
+  border-color: #5e0000;
 }
 
-input{
-  color: #00865d;
+input {
+  color: #5e0000;
+  background-color: #ffffff; /* Fundo opaco */
+  padding: 2px;
+  margin-top: 2px;
+  width: 50%;
+  border-radius: 4px;
+  border: 1px solid #ccc;
 }
-
