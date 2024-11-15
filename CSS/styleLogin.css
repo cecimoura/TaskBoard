@@ -7,7 +7,7 @@ h1{/*não alterar mais*/
 
 body{/*não alterar mais*/
     background-color:#829d74;
-   font-size: Kode Mono;
+   font-family: Kode Mono;
 }/*não alterar mais*/
 
 .box-imagem{ /*não alterar mais*/
@@ -44,7 +44,7 @@ body{/*não alterar mais*/
 }/*não alterar mais*/
 
 #acessar-botao {/*não alterar mais*/
-  color: #5e0000;;
+  color: #5e0000;
   background-color: #ffffff; /* Fundo opaco */
   border: 2px solid #ffffff;;
   padding: 4px 4px;
