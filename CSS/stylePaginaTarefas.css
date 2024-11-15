@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Kode+Mono:wght@500&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
-h1{
+h1{/**não alterar mais*/
     color:#3c4a34;
-    margin-left: 15%;
-}
+    margin-left: 11%;
+}/**não alterar mais*/
 
 body{
   background-color:#d4dad1;
@@ -14,19 +14,14 @@ body{
     align-items: center;
     background-color:#829d74;
     width: 100%;
-    height: 70px;
-    border-bottom: 0.1px solid #c5a880;
+    height: 130%;
   }
   
-  .logo {
-    background-color: transparent;
-    width: 38px;
-    height: 38px;
-    border: 0.4px solid #f5f5dc;
-    margin: 8px;
-    cursor: pointer;
-  }
+  .logo {/**não alterar mais*/
+   width: 120px; /* Ajuste o tamanho da logo */
+   height: auto; /* Mantém a proporção da imagem */
+   position: absolute;
+   left: 2%;
+   top: 1.3%;
+  }/**não alterar mais*/
   
-  .botoes-cabecalho {
-    margin-left: auto;
-  }
