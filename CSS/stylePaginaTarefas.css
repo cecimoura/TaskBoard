@@ -59,17 +59,38 @@ body {
   left: 3%;
 }
 
-
-
-
- /* color: #5e0000;
-  background-color: #ffffff; /* Fundo opaco */
-  /*border: 2px solid #ffffff;;
-  padding: 4px 4px;
+.item{
+  margin: 0;
+  padding: 10px;
+  box-sizing: border-box;
+  font-family: 'poppins';
+  font-size: 30px;
   border-radius: 5px;
-  transition: background-color 0.3s ease;
-  cursor: pointer;
-  margin: 10%;
-  margin-right: 25px;*/
-  
+  background-color: rgba(255, 255, 255, 0.8); /* Fundo com 80% de opacidade */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.container-kanban{
+  display: flex;
+  justify-content: center;
+  min-height: 400px;
+  gap: 10px;
+  padding: 10px;
+}
+
+.column{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  background-color: #9cbf8b;
+  min-width: 200px;
+  border-radius: 5px;
+}
+
+.dragging{
+  opacity: 0.5;
+}
+
+ 
 

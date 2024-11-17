@@ -13,24 +13,47 @@
         <div class="logo">
             <img src="/IMAGENS/TaskBoard-Logo.png" alt="Logo do Site" class="logo">
         </div>
-      </header> 
+      </header>    
+           <nav>
+              <div class="container-botoes"><!--Container onde ficam os botoes e o email e a opção de logout-->
+
+                <div class="container-filtragem">
+                  <select id="filtro-board">
+                  <option value="">Todos</option>
+                  <option value="Kanban">Board Kanban</option>
+                  </select>        
+               </div>
+
+              </div><!--Fim da div container-botoes-->
+           </nav>
+      </header>
+          
+    <div class="container-kanban">
+      <div class="column">
+        <div class="item" draggable="true">Card 1</div>
+        <div class="item" draggable="true">Card 2</div>
+      </div>
      
-<nav>
-<div class="container-botoes"><!--Container onde ficam os botoes e o email e a opção de logout-->
-
-  <div class="container-filtragem">
-      <select id="filtro-board">
-        <option value="">Todos</option>
-        <option value="Kanban">Board Kanban</option>
-      </select>        
-    </div>
-  
-</div><!--Fim da div container-botoes-->
-
+      <div class="column">
+        <div class="item" draggable="true">Card 3</div>
+        <div class="item" draggable="true">Card 4</div>
+      </div>
+      
+      <div class="column">
+        <div class="item" draggable="true">Card 5</div>
+        <div class="item" draggable="true">Card 6</div>
+      </div>
+    </div><!--Fim da div container-kanban-->
 
 
 
 
-</nav>
+
+
+
+
+
+
+<script src="/JS/colunasTarefas.js"></script>
 </body>
 </html>
