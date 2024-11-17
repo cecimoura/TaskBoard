@@ -5,33 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="/CSS/styleLogin.css">
-    
-   
- 
 </head>
 <body>
    
     <div id="container-principal">
         <div class="box-imagem"> 
             <div class="box-login">
-                <form>
+                <form id="accessForm">
                     <h1>Boas vindas ao TaskBoard</h1>
                     <div id="input-email">
                         <label for="email"><b>Digite seu Email:</b></label>
                         <input type="email" id="email" name="email">
 
                         <div>
-                            <a href="/TELAS/PaginaTarefas.html"><button type="submit" id="acessar-botao"><b>Acessar</b></button></a> 
+                        <button type="submit" id="acessar-botao"><b>Acessar</b></button></a> 
                         </div>
                     </div> <!-- Fechando a div #botao-email -->
-                    
                 </form>
+                <p id="responseMessage"></p>
             </div> <!-- Fechando a div .box-login -->
         </div> <!-- Fechando a div .box-imagem -->
     </div> <!-- Fechando a div #container-principal -->
     
-
-
 <script src="/JS/telaLogin.js"></script>
 </body>
 </html>
