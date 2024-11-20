@@ -11,7 +11,7 @@ body{/*não alterar mais*/
 }/*não alterar mais*/
 
 .box-imagem{ /*não alterar mais*/
-  background-image: url(/IMAGENS/baixados.gif);
+  background-image: url(/styles/IMAGENS/baixados.gif);
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: cover;
