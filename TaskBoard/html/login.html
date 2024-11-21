@@ -11,23 +11,20 @@
     <div id="container-principal">
         <div class="box-imagem"> 
             <div class="box-login">
-                <form id="accessForm">
+                <form id="access-form">
                     <h1>Boas vindas ao TaskBoard</h1>
                     <div id="input-email">
                         <label for="email"><b>Digite seu Email:</b></label>
-                        <input type="email" id="email" name="email" placeholder=" Digite aqui seu email">
-
-                        <div>
-                        <button type="submit" id="acessar-botao"><b>Acessar</b></button></a> 
-                        </div>
-                    </div> <!-- Fechando a div #botao-email -->
+                        <input type="email" id="email" name="email" placeholder="Digite aqui seu email">
+                        <button type="submit" id="acessar-botao"><b>Acessar</b></button>
+                    </div>
                 </form>
-                <p id="responseMessage"></p>
-            </div> <!-- Fechando a div .box-login -->
-        </div> <!-- Fechando a div .box-imagem -->
-    </div> <!-- Fechando a div #container-principal -->
+                <p id="error-message" class="hidden"></p>
+            </div><!--Fechando a div box-login-->
+        </div> <!-- Fechando a div box-imagem -->
+    </div> <!-- Fechando a div container-principal -->
     
-    <script type="module" src="./scripts/pages/login.js"></script>
+    <script type="module" src="/TaskBoard/scripts/pages/Login.js"></script>
 
 </body>
 </html>
