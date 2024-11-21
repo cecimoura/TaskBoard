@@ -2,7 +2,7 @@
 
 h1{/*não alterar mais*/
  color: #5e0000;
- font-size: Kode Mono;
+ font-family: 'Kode Mono', monospace;
 }/*não alterar mais*/
 
 body{/*não alterar mais*/
@@ -16,11 +16,12 @@ body{/*não alterar mais*/
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 10px;
-  height: 100%;
+  height: 300%;
   display: flex;
   justify-content: center;
   max-width: 400%; /* Largura máxima do box */
   margin-top: 10%;
+  position: relative;
 } /*não alterar mais*/
 
 
@@ -69,5 +70,11 @@ input {
   width: 50%;
   border-radius: 4px;
   border: 1px solid #ccc;
+}
+
+#error-message{
+  color: rgb(188, 40, 40);
+  font-size: 14px ;
+  margin-top: 5px;
 }
 
