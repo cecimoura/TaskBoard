@@ -16,7 +16,7 @@ body{/*não alterar mais*/
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 10px;
-  height: 300%;
+  height: 290%;
   display: flex;
   justify-content: center;
   max-width: 400%; /* Largura máxima do box */
