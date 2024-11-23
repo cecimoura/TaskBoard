@@ -1,6 +1,7 @@
 /* Importação de fontes */
 @import url('https://fonts.googleapis.com/css2?family=Kode+Mono:wght@500&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
+/* Resetando margens de todos os elementos */
 *{
   margin:0;
 }
@@ -33,13 +34,61 @@ body {
  display: flex;
  flex-direction: row;
  position: absolute;
- left: 3%;
+  left: 3%;/* Distância da borda esquerda */
   width: 100px; /* Largura fixa para evitar mudanças com o zoom */
-  height: 70px; /* Mantém a proporção */
+  height: 70px; 
 }
 
-.switch {
+/* Estilo do botão de dropdown */
+.dropbtn {
+  display: flex;
+  flex-direction: row;
+  font-family: 'Kode Mono', monospace;
+  background-color: #e5eef4;
+  color: rgb(85, 30, 30);
+  padding: 6px; /* Espaçamento interno */
+  font-size: 16px;
+  border-radius: 4px; /* Borda arredondada */
+  border-style:initial; 
+  cursor: pointer;
+}
+
+/* Container do dropdown */
+.dropdown {
   position: relative;
+  display: inline-block;
+  bottom: 50%;
+  left: 4%;
+}
+
+/* Conteúdo do dropdown (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links dentro do dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Mudança de cor ao passar o mouse */
+.dropdown-content a:hover {background-color:#9cbf8b;}
+
+/* Mostrar dropdown ao adicionar a classe "show" */
+.show {display:block;}
+
+
+/* Estilo do botão de alternância (switch) */
+.switch {
+  position: relative; /* Relativo ao posicionamento da página */
   display: inline-block;
   top: 4px;
   width: 59px;
@@ -47,12 +96,14 @@ body {
   left: 91%;
 }
 
+/* Esconde o input padrão do switch */
 .switch input { 
   opacity: 0;
   width: 0;
   height: 0;
 }
 
+/* Estilo do slider */
 .slider {
   position: absolute;
   cursor: pointer;
@@ -60,14 +111,15 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #829d74;
+  background-color: #0e3d42;
   -webkit-transition: .4s;
-  transition: .4s;
+  transition: .4s; /* Animação de transição */
 }
 
+/* Estilo do círculo dentro do slider */
 .slider:before {
   position: absolute;
-  content: "";
+  content: ""; /* Conteúdo vazio */
   height: 26px;
   width: 26px;
   left: 4px;
@@ -78,9 +130,10 @@ body {
 }
 
 input:checked + .slider {
-  background-color: #0e3d42;
+  background-color: #829d74;
 }
 
+/* Posição do círculo ao ativar */
 input:checked + .slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
@@ -95,6 +148,7 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
+/* Estilo do container de botões */
 .container-botoes{
   background-color: #9cbf8b;
   width: 100%;
@@ -103,17 +157,6 @@ input:checked + .slider:before {
 }
 
 
-#filtro-board {
-  background-color: #f5f5dc;
-  color: #5e0000;
-  border-radius: 5px;
-  padding: 4px;
-  border: none;
-  margin: 6px;
-  position: absolute;
-  bottom: 78%;
-  left: 3%;
-}
 
 #botao-perfil{
     display: flex;

@@ -20,11 +20,22 @@
 </header>    
           
      <nav class="navbar">
-        <div class="container-botoes"><!--Container onde ficam os botoes, o email e a opção de logout-->
+      <div class="container-botoes"><!--Container onde ficam os botoes, o email e a opção de logout-->
+        <div class="botao-switch">
           <label class="switch">
             <input type="checkbox" checked>
             <span class="slider round"></span>
           </label>
+        </div> <!--Fim da div botao-switch-->
+        <div class="dropdown">
+          <button onclick="myFunction()" class="dropbtn">Boards</button>
+          <div id="myDropdown" class="dropdown-content">
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a>
+          </div>
+        </div>
+
         </div><!--Fim da div container-botoes-->
     </nav>
      
