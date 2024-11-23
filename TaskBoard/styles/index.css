@@ -2,12 +2,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Kode+Mono:wght@500&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
 *{
-  margin:0.1px;
+  margin:0;
 }
-
 
 /* Estilo do título */
 h1 {
+  position: static;
   color: #3c4a34;
   margin-left: 11%;
 }
@@ -16,6 +16,7 @@ h1 {
 body {
   background-color: #d4dad1;
   font-family: 'Kode Mono', monospace;
+  min-width: 1200px;
 }
 
 /* Estilo do cabeçalho */
@@ -29,18 +30,14 @@ body {
 
 /* Estilo da logo */
 .logo {
-  position: fixed;
-  top: 10px; /* Distância do topo */
-  left: 2.5%; /* Distância da esquerda */
+ display: flex;
+ flex-direction: row;
+ position: absolute;
+ left: 3%;
   width: 100px; /* Largura fixa para evitar mudanças com o zoom */
   height: 70px; /* Mantém a proporção */
 }
 
-@media (min-width: 1200px) {
-  .logo {
-    width: 100px;
-  }
-}
 
 
 .container-botoes{
@@ -50,13 +47,6 @@ body {
   border: #829d74 1px solid;
 }
 
-
-.container-filtragem {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-  margin-right: 150px;
-}
 
 #filtro-board {
   background-color: #f5f5dc;
@@ -74,3 +64,4 @@ body {
     display: flex;
     justify-content: center;
 }
+
