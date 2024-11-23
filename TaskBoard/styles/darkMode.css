@@ -16,7 +16,9 @@ h1 {
 body {
   background-color: #031617;
   font-family: 'Kode Mono', monospace;
+  min-width: 1200px;
 }
+
 
 /* Estilo do cabeçalho */
 .cabecalho {
@@ -29,19 +31,12 @@ body {
 
 /* Estilo da logo */
 .logo {
-  position: fixed;
-  top: 10px; /* Distância do topo */
-  left: 2.5%; /* Distância da esquerda */
+ flex-direction: row;
+ position: absolute;
+ left: 3%;
   width: 100px; /* Largura fixa para evitar mudanças com o zoom */
-  height: 70px; /* Mantém a proporção */
+  height: 70px; 
 }
-
-@media (min-width: 1200px) {
-  .logo {
-    width: 100px;
-  }
-}
-
 
 .container-botoes{
   background-color:  #042b2e;
