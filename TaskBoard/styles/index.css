@@ -25,6 +25,10 @@ body.dark{
   background-color: #031617;;
 }
 
+body.dark h1{
+  color: #a0a179;
+}
+
 /* Estilo do cabeçalho */
 #cabecalho {
   display: flex;
@@ -40,7 +44,7 @@ background-color: #0e3d42;
 }
 
 /* Estilo da logo */
-.logo {
+#logo {
  display: flex;
  flex-direction: row;
  position: absolute;
@@ -48,6 +52,8 @@ background-color: #0e3d42;
   width: 100px; /* Largura fixa para evitar mudanças com o zoom */
   height: 70px; 
 }
+
+
 
 /* Estilo do botão de dropdown */
 .dropbtn {
