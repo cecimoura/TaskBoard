@@ -18,15 +18,25 @@ body {
   background-color: #d4dad1;
   font-family: 'Kode Mono', monospace;
   min-width: 1200px;
+  transition: .5s;
+}
+
+body.dark{
+  background-color: #031617;;
 }
 
 /* Estilo do cabeçalho */
-.cabecalho {
+#cabecalho {
   display: flex;
   align-items: center;
   background-color: #829d74;
   width: 100%;
   height: 79px;
+  transition: .5s;
+}
+
+#cabecalho.dark{
+background-color: #0e3d42;
 }
 
 /* Estilo da logo */
@@ -85,77 +95,55 @@ body {
 /* Mostrar dropdown ao adicionar a classe "show" */
 .show {display:block;}
 
-
-/* Estilo do botão de alternância (switch) */
-.switch {
-  position: relative; /* Relativo ao posicionamento da página */
-  display: inline-block;
-  top: 4px;
-  width: 59px;
-  height: 34px;
-  left: 91%;
+.container-switch{
+   width: 75px;
+   height: 38px;
+   background-color: #f1f1f1;
+   border-radius: 30%;
+   position: relative;
+   cursor: pointer;
 }
 
-/* Esconde o input padrão do switch */
-.switch input { 
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-/* Estilo do slider */
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #0e3d42;
-  -webkit-transition: .4s;
-  transition: .4s; /* Animação de transição */
-}
-
-/* Estilo do círculo dentro do slider */
-.slider:before {
-  position: absolute;
-  content: ""; /* Conteúdo vazio */
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: rgb(211, 211, 174);
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-input:checked + .slider {
-  background-color: #829d74;
-}
-
-/* Posição do círculo ao ativar */
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
-
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
+.container-switch .indicador{
+  width: 34px;
+  height: 35px;
+  background-color: #3c4a34;
   border-radius: 50%;
+  transform: scale(.9);
+  position: absolute;
+  left: 0;
+  transition: .5s;
 }
+
+.container-switch.dark .indicador{ /*modo escuro*/
+ left: 39px;
+ background-color: #031617;
+}
+
+.container-switch.dark{
+  background-color: #52b9be;;
+}
+
+
+
+
+
+
+
 
 /* Estilo do container de botões */
-.container-botoes{
+#container-botoes{
   background-color: #9cbf8b;
   width: 100%;
   height: 50px;
   border: #829d74 1px solid;
+  transition: .5s;
 }
 
+#container-botoes.dark{
+  background-color: #042b2e;
+  border-color: #042b2e;
+}
 
 
 #botao-perfil{
