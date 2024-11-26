@@ -148,9 +148,6 @@ background-color: #0e3d42;
   border-color: #042b2e;
 }
 
-
-
-
 .item{
   padding: 10px;
   border-radius: 3px;
@@ -195,4 +192,35 @@ border-radius: 5px;
 
 #addColumn:hover {
   background-color: #c9d1c3;
+}
+
+.column-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.column-title {
+  font-weight: bold;
+  color: #3c4a34;
+  font-size: 18px;
+}
+
+.edit-column, .delete-column {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 5px;
+  padding: 3px;
+  color: #555;
+}
+
+.edit-column:hover {
+  color: #0079bf;
+}
+
+.delete-column:hover {
+  color: #d9534f;
 }

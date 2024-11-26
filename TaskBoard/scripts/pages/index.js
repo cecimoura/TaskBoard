@@ -34,8 +34,8 @@ containerSwitch.addEventListener('click',()=>{
     logo.classList.toggle('dark')
 })
 
-//colunas kanban
 
+//manuseio das colunas kanban
 const columns = document.querySelectorAll(".column"); // Seleciona todos os elementos com a classe "column" 
 
 document.addEventListener("dragstart", (e) => { // Add um evento quando um elemento é arrastado
@@ -93,14 +93,64 @@ document.getElementById('addColumn').addEventListener('click', function () {
   const newColumn = document.createElement('div');
   newColumn.classList.add('column');
 
-  // Adicionar um título padrão ou outros elementos, se necessário
+  // Cabeçalho da coluna com botões
+  const columnHeader = document.createElement('div');
+  columnHeader.classList.add('column-header');
+
+  const columnTitle = document.createElement('span');
+  columnTitle.classList.add('column-title');
+  columnTitle.textContent = 'Nova Coluna';
+
+  const editButton = document.createElement('button');
+  editButton.classList.add('edit-column');
+  editButton.textContent = 'Editar';
+  editButton.addEventListener('click', function () {
+      const newTitle = prompt('Digite o novo título da coluna:', columnTitle.textContent);
+      if (newTitle) {
+          columnTitle.textContent = newTitle;
+      }
+  });
+
+  const deleteButton = document.createElement('button');
+  deleteButton.classList.add('delete-column');
+  deleteButton.textContent = 'Excluir';
+  deleteButton.addEventListener('click', function () {
+      if (confirm('Tem certeza que deseja excluir esta coluna?')) {
+          newColumn.remove();
+      }
+  });
+
+  columnHeader.appendChild(columnTitle);
+  columnHeader.appendChild(editButton);
+  columnHeader.appendChild(deleteButton);
+  newColumn.appendChild(columnHeader);
+
+  // Adicionar um card exemplo
   const placeholderCard = document.createElement('div');
   placeholderCard.classList.add('item');
   placeholderCard.textContent = 'Novo Card';
-
-  // Adicionar o card à coluna
   newColumn.appendChild(placeholderCard);
 
   // Adicionar a coluna ao container
   columnsContainer.appendChild(newColumn);
+});
+
+// Função para adicionar os eventos a colunas já existentes
+document.querySelectorAll('.column').forEach(column => {
+  const columnTitle = column.querySelector('.column-title');
+  const editButton = column.querySelector('.edit-column');
+  const deleteButton = column.querySelector('.delete-column');
+
+  editButton.addEventListener('click', function () {
+      const newTitle = prompt('Digite o novo título da coluna:', columnTitle.textContent);
+      if (newTitle) {
+          columnTitle.textContent = newTitle;
+      }
+  });
+
+  deleteButton.addEventListener('click', function () {
+      if (confirm('Tem certeza que deseja excluir esta coluna?')) {
+          column.remove();
+      }
+  });
 });
