@@ -4,6 +4,9 @@
 /* Resetando margens de todos os elementos */
 *{
   margin:0;
+  padding: 0;
+  box-sizing: border-box;
+
 }
 
 /* Estilo do título */
@@ -22,7 +25,7 @@ body {
 }
 
 body.dark{
-  background-color: #031617;;
+  background-color: #031617;
 }
 
 body.dark h1{
@@ -131,13 +134,6 @@ background-color: #0e3d42;
   background-color: #15545b;
 }
 
-
-
-
-
-
-
-
 /* Estilo do container de botões */
 #container-botoes{
   background-color: #9cbf8b;
@@ -153,8 +149,50 @@ background-color: #0e3d42;
 }
 
 
-#botao-perfil{
-    display: flex;
-    justify-content: center;
+
+
+.item{
+  padding: 10px;
+  border-radius: 3px;
+  cursor: grab;
+  background-color: rgba(255, 255, 255, 0.8); /* Fundo com 80% de opacidade */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
 }
 
+.container-kanban{
+ display: flex;
+ gap: 20px;
+ padding: 20px;
+ overflow-x: auto;
+}
+
+.column{
+ width: 250px;
+ min-height: 150px;
+ padding: 10px;
+ box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+ display: flex;
+ flex-direction: column;
+gap: 10px;
+background-color: #9cbf8b;
+border-radius: 5px;
+}
+
+.dragging{
+  opacity: 0.5;
+}
+
+#addColumn {
+  margin: 20px;
+  padding: 10px 20px;
+  background-color: #9cbf8b;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  align-self: center;
+}
+
+#addColumn:hover {
+  background-color: #c9d1c3;
+}
