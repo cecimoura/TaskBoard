@@ -53,8 +53,6 @@ background-color: #0e3d42;
   height: 70px; 
 }
 
-
-
 /* Estilo do botão de dropdown */
 .dropbtn {
   display: flex;
@@ -67,14 +65,14 @@ background-color: #0e3d42;
   border-radius: 4px; /* Borda arredondada */
   border-style:initial; 
   cursor: pointer;
+  
 }
 
 /* Container do dropdown */
 .dropdown {
-  position: relative;
+  position: absolute;
   display: inline-block;
-  bottom: 50%;
-  left: 4%;
+ 
 }
 
 /* Conteúdo do dropdown (Hidden by Default) */
@@ -96,24 +94,27 @@ background-color: #0e3d42;
 }
 
 /* Mudança de cor ao passar o mouse */
-.dropdown-content a:hover {background-color:#9cbf8b;}
+.dropdown-content a:hover {background-color:#c9d1c3;}
 
 /* Mostrar dropdown ao adicionar a classe "show" */
 .show {display:block;}
 
-.container-switch{
-   width: 75px;
-   height: 38px;
-   background-color: #f1f1f1;
-   border-radius: 30%;
-   position: relative;
-   cursor: pointer;
+.container-switch{ /*botao switch que muda o tema*/
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  top: 4px;
+  width: 59px;
+  height: 34px;
+  left: 91%;
+  background-color: #d4dad1;
+  border-radius: 34px;
 }
 
 .container-switch .indicador{
   width: 34px;
   height: 35px;
-  background-color: #3c4a34;
+  background-color: #829d74;
   border-radius: 50%;
   transform: scale(.9);
   position: absolute;
@@ -122,12 +123,12 @@ background-color: #0e3d42;
 }
 
 .container-switch.dark .indicador{ /*modo escuro*/
- left: 39px;
+ left: 26px;
  background-color: #031617;
 }
 
 .container-switch.dark{
-  background-color: #52b9be;;
+  background-color: #15545b;
 }
 
 
