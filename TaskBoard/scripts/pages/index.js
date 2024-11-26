@@ -18,13 +18,18 @@ function myFunction() {
     }
   }
 
+//board do dropdown
+
+
+
+
+
 
 //modo escuro
 let containerSwitch = document.getElementById('container-switch');
 let body = document.querySelector('body');
 let cabecalho = document.getElementById('cabecalho');
 let containerBotoes = document.getElementById('container-botoes');
-
 
 containerSwitch.addEventListener('click',()=>{
     containerSwitch.classList.toggle('dark');
@@ -33,6 +38,9 @@ containerSwitch.addEventListener('click',()=>{
     containerBotoes.classList.toggle('dark');
     logo.classList.toggle('dark');
 })
+
+//modificação de tema de acordo com o usuário
+
 
 
 //manuseio das colunas kanban

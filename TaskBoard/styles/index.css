@@ -6,7 +6,6 @@
   margin:0;
   padding: 0;
   box-sizing: border-box;
-
 }
 
 /* Estilo do título */
@@ -84,6 +83,7 @@ background-color: #0e3d42;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
+  overflow: scroll;
 }
 
 /* Links dentro do dropdown */
@@ -112,7 +112,7 @@ background-color: #0e3d42;
   border-radius: 34px;
 }
 
-.container-switch .indicador{
+.container-switch .indicador{ /*modo claro*/
   width: 34px;
   height: 35px;
   background-color: #829d74;
