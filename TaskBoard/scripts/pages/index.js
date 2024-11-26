@@ -4,7 +4,7 @@ function myFunction() {
     document.getElementById("myDropdown").classList.toggle("show");
   }
   
-  // função pra fechar o dropdown se clicar fora
+// função pra fechar o dropdown se clicar fora
   window.onclick = function(event) {
     if (!event.target.matches('.dropbtn')) {
       var dropdowns = document.getElementsByClassName("dropdown-content");
@@ -27,11 +27,11 @@ let containerBotoes = document.getElementById('container-botoes');
 
 
 containerSwitch.addEventListener('click',()=>{
-    containerSwitch.classList.toggle('dark')
-    body.classList.toggle('dark')
-    cabecalho.classList.toggle('dark')
-    containerBotoes.classList.toggle('dark')
-    logo.classList.toggle('dark')
+    containerSwitch.classList.toggle('dark');
+    body.classList.toggle('dark');
+    cabecalho.classList.toggle('dark');
+    containerBotoes.classList.toggle('dark');
+    logo.classList.toggle('dark');
 })
 
 
@@ -42,16 +42,15 @@ document.addEventListener("dragstart", (e) => { // Add um evento quando um eleme
     e.target.classList.add("dragging");  // Add a classe "dragging" ao elemento que está sendo arrastado
 });
 
-document.addEventListener("dragend", (e) => { //Add um evento que ocorre termina de arrastar um elemento 
+document.addEventListener("dragend", (e) => { //Add um evento quando termina de arrastar um elemento 
     e.target.classList.remove("dragging"); 
 });
 
 columns.forEach((item) => {
-    item.addEventListener("dragover", (e) => { // Adiciona um evento para quando algo é arrastado sobre a coluna
+    item.addEventListener("dragover", (e) => { // Add um evento para quando algo é arrastado sobre a coluna
         e.preventDefault(); // Impede o comportamento padrão do "dragover" (necessário para permitir o drop)
         
-        // Seleciona o elemento que está sendo arrastado
-        const dragging = document.querySelector(".dragging");
+        const dragging = document.querySelector(".dragging");  // Seleciona o elemento que está sendo arrastado
         
         // leva o item para onde será inserido, com base na posição do cursor
         const applyAfter = getNewPosition(item, e.clientY);
@@ -154,3 +153,4 @@ document.querySelectorAll('.column').forEach(column => {
       }
   });
 });
+

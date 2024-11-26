@@ -58,8 +58,6 @@ background-color: #0e3d42;
 
 /* Estilo do botão de dropdown */
 .dropbtn {
-  display: flex;
-  flex-direction: row;
   font-family: 'Kode Mono', monospace;
   background-color: #e5eef4;
   color: rgb(85, 30, 30);
@@ -68,14 +66,14 @@ background-color: #0e3d42;
   border-radius: 4px; /* Borda arredondada */
   border-style:initial; 
   cursor: pointer;
-  
+  width: 120px;
+  margin: 4%;
 }
 
 /* Container do dropdown */
 .dropdown {
   position: absolute;
   display: inline-block;
- 
 }
 
 /* Conteúdo do dropdown (Hidden by Default) */
@@ -215,6 +213,7 @@ border-radius: 5px;
   margin-left: 5px;
   padding: 3px;
   color: #555;
+ 
 }
 
 .edit-column:hover {
