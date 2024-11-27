@@ -205,15 +205,25 @@ border-radius: 5px;
   font-size: 18px;
 }
 
-.edit-column, .delete-column {
+.edit-column {
   background: none;
   border: none;
   cursor: pointer;
   font-size: 16px;
   margin-left: 5px;
   padding: 3px;
-  color: #555;
+  color: #ffffff;
  
+}
+
+.delete-column{
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 5px;
+  padding: 3px;
+  color: #ffffff;
 }
 
 .edit-column:hover {
@@ -222,4 +232,9 @@ border-radius: 5px;
 
 .delete-column:hover {
   color: #d9534f;
+}
+
+#header-botoes{
+  background-color: #6ba876;
+  border-radius: 5px;
 }

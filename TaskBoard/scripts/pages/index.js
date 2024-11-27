@@ -1,4 +1,6 @@
 
+//boas vindas ao usuario
+
 //função que ao clicar aparece as opçoes do dropdown
 function myFunction() {
     document.getElementById("myDropdown").classList.toggle("show");
@@ -18,7 +20,9 @@ function myFunction() {
     }
   }
 
-//board do dropdown
+
+  
+  //board do dropdown
 
 
 
