@@ -29,37 +29,19 @@
           <div class="indicador"></div>
         </div>
 
-        <div class="dropdown">
-          <button onclick="myFunction()" class="dropbtn">All Boards</button>
-          <ul id="myDropdown" class="dropdown-content">
-            <a href="#">Link 1</a>
-            <a href="#">Link 2</a>
+        <div class="dropdown" id="dropdown">
+          <button  class="dropbtn" id="dropbtn" type="button" data-bs-toggle="dropdown" aria-expanded="false"> Boards</button>
+           
+          <ul class="dropdown-content" id="dropdown-content">
+            <li><a class="dropdown-item" href="#"></a></li>
           </ul>
         </div><!--Fim da div dropdown-->
       </div><!--Fim da div container-botoes-->
     </nav>
 
-    <!-- Botão para adicionar nova coluna -->
-    <button id="addColumn">+ Adicionar Coluna</button>
-
-    <div class="container-kanban" id="columnsContainer">
-      <div class="column">
-        <div class="column-header">
-          <div id="header-botoes">
-            <span class="column-title"></span>
-            <button class="edit-column">Editar</button>
-            <button class="delete-column">Excluir</button>
-            <button class="add-tarefa-column">+</button>
-          </div> 
-        </div><!--Fim da div column header-->
-           <div class="item" draggable="true">Card 1</div>
-           <div class="item" draggable="true">Card 2</div>
-       </div><!--Fim da div column-->
-    </div> <!--Fim da div container-kanban-->
-     
-
-<script type="module" src="scripts/pages/index.js"></script>
-<script src="scripts/pages/onclick.js"></script>
-
+    
+    <script type="module" src="/TaskBoard/scripts/pages/index.js"></script>
+    <script src="/TaskBoard/scripts/pages/dropdown.js"></script>
+    <script src="/TaskBoard/scripts/pages/onclick.js"></script>
 </body>
 </html>
