@@ -1,5 +1,10 @@
+import { API_BASE_URL } from "../../config/apiConfig.js";
+import { getFromLocalStorage, getToLocalStorage } from "../utils/storage.js";
+
+
 
 //boas vindas ao usuario
+const recuperarUser = getFromLocalStorage("user");
 
 //função que ao clicar aparece as opçoes do dropdown
 function myFunction() {
@@ -19,34 +24,61 @@ function myFunction() {
       }
     }
   }
-
-
-  
   //board do dropdown
 
+  
 
-
-
-
-
-//modo escuro
-let containerSwitch = document.getElementById('container-switch');
-let body = document.querySelector('body');
-let cabecalho = document.getElementById('cabecalho');
-let containerBotoes = document.getElementById('container-botoes');
-
-containerSwitch.addEventListener('click',()=>{
-    containerSwitch.classList.toggle('dark');
-    body.classList.toggle('dark');
-    cabecalho.classList.toggle('dark');
-    containerBotoes.classList.toggle('dark');
-    logo.classList.toggle('dark');
-})
-
-//modificação de tema de acordo com o usuário
-
-
-
+  let containerSwitch = document.getElementById('container-switch');
+  let body = document.querySelector('body');
+  let cabecalho = document.getElementById('cabecalho');
+  let containerBotoes = document.getElementById('container-botoes');
+  
+  function clickTema() {
+      containerSwitch.addEventListener('click', () => {
+          containerSwitch.classList.toggle('dark');
+          body.classList.toggle('dark');
+          cabecalho.classList.toggle('dark');
+          containerBotoes.classList.toggle('dark');
+      });
+  }
+  
+  // Função para modificar o tema
+  function modificaTema() {
+      if (
+          containerSwitch.classList.contains('dark') &&
+          body.classList.contains('dark') &&
+          cabecalho.classList.contains('dark') &&
+          containerBotoes.classList.contains('dark')
+      ) {
+          return 1; // Já está no tema escuro
+      } else {
+         return 2; // Adiciona o tema claro
+      }
+  }
+  
+  // Modificação de tema de acordo com o usuário
+  async function saveUserTheme() {
+      const userData = await response.json();
+      saveToLocalStorage("user", { name: userData.name, theme: userData.Theme });
+  }
+  
+  async function recuperaTema() {
+      try {
+          const response = await fetch(`${API_BASE_URL}/PersonConfigById?PersonId=${infoLS.id}`);
+          if (!response.ok) {
+              throw new Error(`Erro ao carregar as informações: ${response.status}-${response.statusText}`);
+          }
+          const result = await response.json();
+          if (result.DefaultThemeId === 1) {
+              modificaTema(); // Ativa o tema escuro
+          }
+      } catch (error) {
+          console.log("Erro ao recuperar tema:", error);
+      }
+  }
+  
+ 
+  
 //manuseio das colunas kanban
 const columns = document.querySelectorAll(".column"); // Seleciona todos os elementos com a classe "column" 
 
@@ -166,3 +198,7 @@ document.querySelectorAll('.column').forEach(column => {
   });
 });
 
+
+ // Inicialização
+ clickTema();
+ 
