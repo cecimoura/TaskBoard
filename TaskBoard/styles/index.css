@@ -55,12 +55,23 @@ background-color: #0e3d42;
   height: 70px; 
 }
 
+.logout-button{
+  background-color: #d3dcc3;
+  width: 80px;
+  border-radius: 4px;
+  font-family: 'Kode Mono', monospace;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  left: 999%;
+}
+
 /*Estilo do botao dropdown*/
 .dropbtn {
   font-family: 'Kode Mono', monospace;
   background-color: #e5eef4;
   color: rgb(85, 30, 30);
-  padding: 6px;
+  padding: 4px;
   font-size: 16px;
   border: none;
   cursor: pointer;
@@ -71,6 +82,8 @@ background-color: #0e3d42;
 .dropdown {
   position: relative;
   display: inline-block;
+  bottom: 15%;
+  right: 1%;
 }
 
 .dropdown-content {
@@ -113,7 +126,7 @@ background-color: #0e3d42;
   top: 4px;
   width: 59px;
   height: 34px;
-  left: 91%;
+  left: 88%;
   background-color: #d4dad1;
   border-radius: 34px;
 }
