@@ -134,7 +134,10 @@ background-color: #0e3d42;
 .container-switch .indicador{ /*modo claro*/
   width: 34px;
   height: 35px;
-  background-color: #829d74;
+  background-color: #fafff7;
+  background-image: url('/TaskBoard/styles/IMAGENS/sun.png'); /* Adicione o caminho para sua imagem */
+  background-size: cover; /* Garante que a imagem cubra completamente o círculo */
+  background-position: center; /* Centraliza a imagem */
   border-radius: 50%;
   transform: scale(.9);
   position: absolute;
@@ -144,7 +147,10 @@ background-color: #0e3d42;
 
 .container-switch.dark .indicador{ /*modo escuro*/
  left: 26px;
- background-color: #031617;
+ background-color: #829d74;
+ background-image: url('/TaskBoard/styles/IMAGENS/moon.png'); /* Adicione o caminho para sua imagem */
+  background-size: cover; /* Garante que a imagem cubra completamente o círculo */
+  background-position: center; /* Centraliza a imagem */
 }
 
 .container-switch.dark{
