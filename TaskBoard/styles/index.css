@@ -56,21 +56,28 @@ background-color: #0e3d42;
 }
 
 .logout-button{
-  background-color: #d3dcc3;
+  background: none;
   width: 80px;
-  border-radius: 4px;
+  border: none;
+  font-size: 18px;
   font-family: 'Kode Mono', monospace;
   cursor: pointer;
   position: relative;
   display: inline-block;
   left: 999%;
+  transition: 0.2s;
+  color: #d7d8c0;
+}
+
+.logout-button:hover{
+  color: #867940;
 }
 
 /*Estilo do botao dropdown*/
 .dropbtn {
   font-family: 'Kode Mono', monospace;
   background-color: #e5eef4;
-  color: rgb(85, 30, 30);
+  color: rgb(0, 0, 0);
   padding: 4px;
   font-size: 16px;
   border: none;
