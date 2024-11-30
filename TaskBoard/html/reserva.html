@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskBoard</title>
+    <link rel="stylesheet" href="/TaskBoard/styles/index.css">
+</head>
+
+<body>
+     <!--Header é o cabeçalho do site, nele contém a logo e os botões para perfil do usuário e home-->
+<header id="cabecalho">
+  <h1>TaskBoard</h1>
+    <div id="logo">
+       <img src="/TaskBoard/styles/IMAGENS/logo-png.png" alt="Logo do Site" class="logo">
+    </div>
+      
+    <div class="boas-vindas"> <!--aqui vai aparecer o nome do usuario com um boas vindas-->
+        <span id="userName"></span>
+    </div><!--Fim da div boas-vndas-->
+    <div class="botao-logout">
+      <button class="logout-button" onclick="funcLogOff()"><b>Logout</b></button>
+    </div>
+</header>    
+          
+     <nav class="navbar">
+      <div id="container-botoes"><!--Container onde ficam os botoes, o email e a opção de logout-->
+        <div class="container-switch" id="container-switch">
+          <div class="indicador"></div>
+        </div>
+
+        <div class="dropdown" id="dropdown">
+          <button  class="dropbtn" id="dropbtn" type="button" data-bs-toggle="dropdown" aria-expanded="false"> Boards</button>
+           
+          <ul class="dropdown-content" id="dropdown-content">
+            <li><a class="dropdown-item" href="#"></a></li>
+          </ul>
+        </div><!--Fim da div dropdown-->
+      </div><!--Fim da div container-botoes-->
+    </nav>
+
+    
+    <script type="module" src="/TaskBoard/scripts/pages/index.js"></script>
+    <script src="/TaskBoard/scripts/pages/dropdown.js"></script>
+    <script src="/TaskBoard/scripts/pages/onclick.js"></script>
+    <script src="/TaskBoard/scripts/pages/darkMode.js"></script>
+</body>
+</html>

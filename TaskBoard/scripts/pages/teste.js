@@ -1,5 +1,5 @@
 //import {API_BASE_URL} from "../../config/infoAPI.js"
-//import {resgatarLocalStorage} from "../localStorage/saveLocalSt.js";
+import {resgatarLocalStorage} from "../localStorage/saveLocalSt.js";
 
 // Função para carregar temas baseados no ID do usuário
 async function carregarTemas() {
