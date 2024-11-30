@@ -1,21 +1,18 @@
-/* Importação de fontes */
+
 @import url('https://fonts.googleapis.com/css2?family=Kode+Mono:wght@500&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
-/* Resetando margens de todos os elementos */
-*{
-  margin:0;
+* {
+  margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Estilo do título */
-h1 {
+h1{
   position: static;
-  color: #3c4a34;
+  color: #3c4a34; 
   margin-left: 11%;
 }
 
-/* Estilo do corpo */
 body {
   background-color: #d4dad1;
   font-family: 'Kode Mono', monospace;
@@ -39,6 +36,8 @@ body.dark h1{
   width: 100%;
   height: 79px;
   transition: .5s;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 #cabecalho.dark{
@@ -47,71 +46,69 @@ background-color: #0e3d42;
 
 /* Estilo da logo */
 #logo {
- display: flex;
- flex-direction: row;
- position: absolute;
+  display: flex;
+  flex-direction: row;
+  position: absolute;
   left: 3%;/* Distância da borda esquerda */
   width: 100px; /* Largura fixa para evitar mudanças com o zoom */
   height: 70px; 
 }
 
-.logout-button{
-  background: none;
-  width: 80px;
-  border: none;
-  font-size: 18px;
-  font-family: 'Kode Mono', monospace;
-  cursor: pointer;
-  position: relative;
-  display: inline-block;
-  left: 999%;
-  transition: 0.2s;
-  color: #d7d8c0;
+main {
+  user-select: none;
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+  gap: 20px;
+  overflow: auto;
+  min-height: calc(100vh - 70px);
+  outline:  red 4px solid;
 }
 
-.logout-button:hover{
-  color: #867940;
+.hidden {
+  display: none;
+  outline:  red 4px solid;
 }
 
-/*Estilo do botao dropdown*/
 .dropbtn {
   font-family: 'Kode Mono', monospace;
-  background-color: #e5eef4;
-  color: rgb(0, 0, 0);
-  padding: 4px;
+  background-color:#e5eef4;
+  color: #675f4b;
+  padding: 8px;
   font-size: 16px;
   border: none;
   cursor: pointer;
+  margin-left: 45px;
   border-radius: 5px;
-  width: 110px;
 }
 
 .dropdown {
   position: relative;
   display: inline-block;
-  bottom: 15%;
-  right: 1%;
+  top: 13%;
 }
 
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color:  #f1f1f1;;
-  min-width: 160px;
+  background-color:  #d9e5d5;
+  height: 70vh;
   border-radius: 5px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
   left: 0;
+  list-style: none;
+  overflow-y: hidden;
   overflow: scroll;
-  cursor: pointer;
+  user-select: none;
 }
 
-/*Conteúdo dentro do dropdown*/
 .dropdown-content a {
-  color: black;
+  color: #675f4b;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
+  cursor: pointer;
 }
 
 .dropdown-content a:hover {
@@ -119,43 +116,72 @@ background-color: #0e3d42;
 }
 
 .dropdown-item {
-  color: #6e6e62;
+  color: #455763;
 }
 
 .dropdown:hover .dropdown-content {
   display: block;
 }
 
-.container-switch{ /*botao switch que muda o tema*/
-  cursor: pointer;
-  position: relative;
-  display: inline-block;
-  top: 4px;
-  width: 59px;
-  height: 34px;
-  left: 88%;
-  background-color: #d4dad1;
-  border-radius: 34px;
+.name-logout {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 20px;
+  margin-right: 30px;
 }
 
-.container-switch .indicador{ /*modo claro*/
-  width: 34px;
-  height: 35px;
-  background-color: #fafff7;
-  background-image: url('/TaskBoard/styles/IMAGENS/sun.png'); /* Adicione o caminho para sua imagem */
-  background-size: cover; /* Garante que a imagem cubra completamente o círculo */
-  background-position: center; /* Centraliza a imagem */
+.name-logout p {
+  font-size: 20px;
+  color: #d7d8c0;
+  border-right: #e8e2da solid 1px;
+  padding: 10px;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.logout-button {
+  background: none;
+  width: 80px;
+  border: none;
+  font-size: 20px;
+  font-family: 'Kode Mono', monospace;
+  cursor: pointer;
+  transition: 0.2s;
+  color: #d7d8c0;
+}
+
+.logout-button :hover{
+  color: #867940;
+}
+
+.container-switch {
+  width: 70px;
+  height: 30px;
+  background-color: #d4dad1;
+  border-radius: 50px;
+  position: relative;
+  cursor: pointer;
+}
+
+.container-switch .indicador { /*modo claro*/
+  width: 30px;
+  height: 30px;
+  background-color:  #fafff7;
+  background-image: url('/TaskBoard/styles/IMAGENS/sun.png'); 
+  background-size: cover;
+  background-position: center;
   border-radius: 50%;
-  transform: scale(.9);
+  transform: scale(0.9);
   position: absolute;
   left: 0;
-  transition: .5s;
+  transition: 0.5s;
 }
 
 .container-switch.dark .indicador{ /*modo escuro*/
- left: 26px;
- background-color: #829d74;
- background-image: url('/TaskBoard/styles/IMAGENS/moon.png'); /* Adicione o caminho para sua imagem */
+  left: 26px;
+  background-color: #829d74;
+  background-image: url('/TaskBoard/styles/IMAGENS/moon.png'); /* Adicione o caminho para sua imagem */
   background-size: cover; /* Garante que a imagem cubra completamente o círculo */
   background-position: center; /* Centraliza a imagem */
 }
@@ -178,95 +204,167 @@ background-color: #0e3d42;
   border-color: #042b2e;
 }
 
-.item{
+
+
+
+
+.columns {
+  display: flex;
+  gap: 15px;
+  margin-top: 50px;
+  padding: 30px;
+}
+
+.column {
+  width: 250px;
+  background-color: #e8e2da;
+  border-radius: 8px;
   padding: 10px;
-  border-radius: 3px;
-  cursor: grab;
-  background-color: rgba(255, 255, 255, 0.8); /* Fundo com 80% de opacidade */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+  height: fit-content;
+  min-width: 200px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
-.container-kanban{
- display: flex;
- gap: 20px;
- padding: 20px;
- overflow-x: auto;
-}
-
-.column{
- width: 250px;
- min-height: 150px;
- padding: 10px;
- box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
- display: flex;
- flex-direction: column;
-gap: 10px;
-background-color: #9cbf8b;
-border-radius: 5px;
-}
-
-.dragging{
-  opacity: 0.5;
-}
-
-#addColumn {
+.column__title {
+  color: #455763;
+  font-size: 0.9rem;
+  font-size: 20px;
+  font-weight: bold;
   margin: 20px;
-  padding: 10px 20px;
-  background-color: #9cbf8b;
-  color: white;
+}
+
+.column__cards {
+  padding: 4px;
+  height: 100%;
+  border-radius: 5px;
+}
+
+.card-container {
+  margin-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+.card {
+  width: 100%;
+  min-height: 70px;
+  background-color: #d3dadc;
+  border-radius: 5px;
+  border: 1px solid #d6c9b4;
+  box-shadow: 0 2px 2px #455763;
+  padding: 12px 14px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #455763;
+  margin-bottom: 5px;
+}
+
+.card__title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.card__description {
+  font-size: 15px;
+}
+
+.card__title-input,
+.card__description-input {
+  background-color: #e8e2da;
+}
+
+.column--highlight {
+  background-color: #d6c9b4;
+}
+
+.add-card-btn {
+  margin: 10px;
+  background-color: #455763;
+  color: #e8e2da;
   border: none;
+  padding: 7px;
   border-radius: 5px;
   cursor: pointer;
-  align-self: center;
 }
 
-#addColumn:hover {
-  background-color: #c9d1c3;
+.add-card-btn:hover,
+.add-column-btn:hover {
+  background-color: #d6c9b4;
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.column-header {
+.add-column {
+  display: flex;
+  flex-direction: row;
+  margin-right: 30px;
+}
+
+.add-column-btn {
+  background-color: #455763;
+  border-radius: 5px;
+  color: #e8e2da;
+  padding: 2px;
+  margin-left: 5px;
+}
+
+i {
+  width: 8%;
+  cursor: pointer;
+  color: #455763;
+}
+
+.excluir {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-right: 7px;
 }
 
-.column-title {
-  font-weight: bold;
-  color: #3c4a34;
-  font-size: 18px;
+.trilho.dark {
+  background-color: #455763;
 }
 
-.edit-column {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  margin-left: 5px;
-  padding: 3px;
-  color: #ffffff;
- 
+
+.dropbtn.dark {
+  background-color: #455763;
+  color: #e8e2da;
 }
 
-.delete-column{
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  margin-left: 5px;
-  padding: 3px;
-  color: #ffffff;
+.dropdown-content.dark {
+  background-color: #455763;
+  color: #e8e2da;
 }
 
-.edit-column:hover {
-  color: #0079bf;
+.dropdown-content.dark a {
+  color: #e8e2da;
 }
 
-.delete-column:hover {
-  color: #d9534f;
+.dropdown-content.dark a:hover {
+  background-color: #d6c9b4;
+  color: #455763;
 }
 
-#header-botoes{
-  background-color: #6ba876;
-  border-radius: 5px;
+.info-logout-darkmode.dark p {
+  color: #d6c9b4;
+  border-right: #d6c9b4 solid 1px;
+}
+
+.info-logout-darkmode.dark a {
+  color: #d6c9b4;
+}
+
+.column.dark {
+  background-color: #374a57;
+}
+
+.column__title.dark {
+  color: #d6c9b4;
+}
+
+.bi-trash3-fill.dark,
+.excluir.dark {
+  color: #d6c9b4;
 }

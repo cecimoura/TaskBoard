@@ -1,0 +1,272 @@
+/* Importação de fontes */
+@import url('https://fonts.googleapis.com/css2?family=Kode+Mono:wght@500&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+/* Resetando margens de todos os elementos */
+*{
+  margin:0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Estilo do título */
+h1 {
+  position: static;
+  color: #3c4a34;
+  margin-left: 11%;
+}
+
+/* Estilo do corpo */
+body {
+  background-color: #d4dad1;
+  font-family: 'Kode Mono', monospace;
+  min-width: 1200px;
+  transition: .5s;
+}
+
+body.dark{
+  background-color: #031617;
+}
+
+body.dark h1{
+  color: #a0a179;
+}
+
+/* Estilo do cabeçalho */
+#cabecalho {
+  display: flex;
+  align-items: center;
+  background-color: #829d74;
+  width: 100%;
+  height: 79px;
+  transition: .5s;
+}
+
+#cabecalho.dark{
+background-color: #0e3d42;
+}
+
+/* Estilo da logo */
+#logo {
+ display: flex;
+ flex-direction: row;
+ position: absolute;
+  left: 3%;/* Distância da borda esquerda */
+  width: 100px; /* Largura fixa para evitar mudanças com o zoom */
+  height: 70px; 
+}
+
+.logout-button{
+  background: none;
+  width: 80px;
+  border: none;
+  font-size: 18px;
+  font-family: 'Kode Mono', monospace;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  left: 999%;
+  transition: 0.2s;
+  color: #d7d8c0;
+}
+
+.logout-button:hover{
+  color: #867940;
+}
+
+/*Estilo do botao dropdown*/
+.dropbtn {
+  font-family: 'Kode Mono', monospace;
+  background-color: #e5eef4;
+  color: rgb(0, 0, 0);
+  padding: 4px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 110px;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  bottom: 15%;
+  right: 1%;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color:  #f1f1f1;;
+  min-width: 160px;
+  border-radius: 5px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);;
+  z-index: 1;
+  left: 0;
+  overflow: scroll;
+  cursor: pointer;
+}
+
+/*Conteúdo dentro do dropdown*/
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color:#c9d1c3;
+}
+
+.dropdown-item {
+  color: #6e6e62;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.container-switch{ /*botao switch que muda o tema*/
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  top: 4px;
+  width: 59px;
+  height: 34px;
+  left: 88%;
+  background-color: #d4dad1;
+  border-radius: 34px;
+}
+
+.container-switch .indicador{ /*modo claro*/
+  width: 34px;
+  height: 35px;
+  background-color: #fafff7;
+  background-image: url('/TaskBoard/styles/IMAGENS/sun.png'); /* Adicione o caminho para sua imagem */
+  background-size: cover; /* Garante que a imagem cubra completamente o círculo */
+  background-position: center; /* Centraliza a imagem */
+  border-radius: 50%;
+  transform: scale(.9);
+  position: absolute;
+  left: 0;
+  transition: .5s;
+}
+
+.container-switch.dark .indicador{ /*modo escuro*/
+ left: 26px;
+ background-color: #829d74;
+ background-image: url('/TaskBoard/styles/IMAGENS/moon.png'); /* Adicione o caminho para sua imagem */
+  background-size: cover; /* Garante que a imagem cubra completamente o círculo */
+  background-position: center; /* Centraliza a imagem */
+}
+
+.container-switch.dark{
+  background-color: #15545b;
+}
+
+/* Estilo do container de botões */
+#container-botoes{
+  background-color: #9cbf8b;
+  width: 100%;
+  height: 50px;
+  border: #829d74 1px solid;
+  transition: .5s;
+}
+
+#container-botoes.dark{
+  background-color: #042b2e;
+  border-color: #042b2e;
+}
+
+.item{
+  padding: 10px;
+  border-radius: 3px;
+  cursor: grab;
+  background-color: rgba(255, 255, 255, 0.8); /* Fundo com 80% de opacidade */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.container-kanban{
+ display: flex;
+ gap: 20px;
+ padding: 20px;
+ overflow-x: auto;
+}
+
+.column{
+ width: 250px;
+ min-height: 150px;
+ padding: 10px;
+ box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+ display: flex;
+ flex-direction: column;
+gap: 10px;
+background-color: #9cbf8b;
+border-radius: 5px;
+}
+
+.dragging{
+  opacity: 0.5;
+}
+
+#addColumn {
+  margin: 20px;
+  padding: 10px 20px;
+  background-color: #9cbf8b;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  align-self: center;
+}
+
+#addColumn:hover {
+  background-color: #c9d1c3;
+}
+
+.column-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.column-title {
+  font-weight: bold;
+  color: #3c4a34;
+  font-size: 18px;
+}
+
+.edit-column {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 5px;
+  padding: 3px;
+  color: #ffffff;
+ 
+}
+
+.delete-column{
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 5px;
+  padding: 3px;
+  color: #ffffff;
+}
+
+.edit-column:hover {
+  color: #0079bf;
+}
+
+.delete-column:hover {
+  color: #d9534f;
+}
+
+#header-botoes{
+  background-color: #6ba876;
+  border-radius: 5px;
+}
