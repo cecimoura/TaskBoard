@@ -1,102 +1,43 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TaskBoard</title>
-    <link rel="stylesheet" href="/TaskBoard/styles/index.css">
-  </head>
-  <body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaskBoard</title>
+  <link rel="stylesheet" href="/TaskBoard/styles/index.css">
+</head>
+<body>
+  <header id="cabecalho">
+    <h1>TaskBoard</h1>
+    <div id="logo">
+      <img src="/TaskBoard/styles/IMAGENS/logo-png.png" alt="Logo do Site" class="logo">
+    </div>
+    <div class="name-logout" id="name-logout">
+      <p id="nomeUser">Olá, </p> <!-- O nome do usuário será inserido aqui -->
+      <button class="logout-button" onclick="funcLogOff()">Logout</button>
+      <div class="botao-logout">
     
-    <header id="cabecalho">
-        <h1>TaskBoard</h1>
-        <div id="logo">
-           <img src="/TaskBoard/styles/IMAGENS/logo-png.png" alt="Logo do Site" class="logo">
-        </div>
-        
-        <div class="name-logout" id="name-logout">
-        <p id="nomeUser">Olá, </p>
-        
-        <button class="logout-button" onclick="funcLogOff()"><b>Logout</b></button>
-  
-        <div class="container-switch" id="container-switch">
-          <div class="indicador"></div>
-        </div>
-      
       </div>
-    </header>
-        
-        <nav class="navbar">
-         <div id="container-botoes">
-            <div class="dropdown" id="dropdown">
-                <button class="dropbtn" id="dropbtn" type="button" data-bs-toggle="dropdown" aria-expanded="false">All Boards</button>
-                <ul class="dropdown-content" id="dropdown-content">
-                  <li><a class="dropdown-item" href="#"></a></li>
-                </ul>
-            </div><!--Fim da div dropdown-->
-         </div><!--Fim da div container-botoes-->
-        </nav>
-      
-      
-      
-      
-      
-      
-        
+      <!-- Alternância de tema -->
+      <div class="container-switch" id="container-switch">
+        <div class="indicador"></div>
+      </div>
+    </div>
+  </header>
 
-      
+  <nav class="navbar">
+    <div id="container-botoes">
+      <div class="dropdown" id="dropdown">
+        <button class="dropbtn" id="dropbtn" type="button" data-bs-toggle="dropdown" aria-expanded="false">All Boards</button>
+        <ul class="dropdown-content" id="dropdown-content">
+          <li><a class="dropdown-item" href="#">Exemplo de Quadro</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-    <!--<main class="hidden">
-      <section class="columns">
-        <section class="column" id="column1">
-          <div class="excluir">
-            <h2 class="column__title" contenteditable="true" id="todo">
-              To do
-            </h2>
-            <i class="bi bi-trash3-fill" id="trash1"></i>
-          </div>
-          <button class="add-card-btn" id="novatarefa1">Nova tarefa</button>
-          <section class="column__cards"></section>
-        </section>
-        <section class="column" id="column2">
-          <div class="excluir">
-            <h2 class="column__title" contenteditable="true" id="doing">
-              Doing
-            </h2>
-            <i class="bi bi-trash3-fill" id="trash2"></i>
-          </div>
-          <button class="add-card-btn" id="novatarefa2">Nova tarefa</button>
-          <section class="column__cards"></section>
-        </section>
-        <section class="column" id="column3">
-          <div class="excluir">
-            <h2 class="column__title" contenteditable="true" id="review">
-              Review
-            </h2>
-            <i class="bi bi-trash3-fill" id="trash3"></i>
-          </div>
-          <button class="add-card-btn" id="novatarefa3">Nova tarefa</button>
-          <section class="column__cards"></section>
-        </section>
-        <section class="column" id="column4">
-          <div class="excluir">
-            <h2 class="column__title" contenteditable="true" id="done">Done</h2>
-            <i class="bi bi-trash3-fill" id="trash4"></i>
-          </div>
-          <button class="add-card-btn" id="novatarefa4">Nova tarefa</button>
-          <section class="column__cards"></section>
-        </section>
-      </section>
-      <section class="add-column">
-        <input
-          id="new-column-title"
-          type="text"
-          placeholder="Digite o título da nova coluna"
-          aria-label="Título da nova coluna"
-        />
-        <button id="add-column-btn" class="add-column-btn">Adicionar</button>
-      </section>-->
-    </main>
-    <script src="/TaskBoard/scripts/pages/darkMode.js"></script>
-  </body>
+  <script src="/TaskBoard/scripts/pages/darkMode.js"></script>
+  <script type="module" src="/TaskBoard/scripts/pages/index.js"></script> 
+  <script src="/TaskBoard/scripts/pages/logout.js"></script> 
+</body>
 </html>
