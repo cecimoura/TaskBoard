@@ -54,6 +54,45 @@ background-color: #0e3d42;
   height: 70px; 
 }
 
+.container-switch {
+  width: 50px;
+  height: 30px;
+  background-color: #d4dad1;
+  border-radius: 50px;
+  position: relative;
+  cursor: pointer;
+}
+
+.container-switch .indicador { /*modo claro*/
+  width: 30px;
+  height: 30px;
+  background-color:  #fafff7;
+  background-image: url('/TaskBoard/styles/IMAGENS/sun.png'); 
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  transform: scale(0.9);
+  position: absolute;
+  left: 0;
+  transition: 0.5s;
+}
+
+.container-switch.dark .indicador{ /*modo escuro*/
+  left: 26px;
+  background-color: #829d74;
+  background-image: url('/TaskBoard/styles/IMAGENS/moon.png'); /* Adicione o caminho para sua imagem */
+  background-size: cover; /* Garante que a imagem cubra completamente o círculo */
+  background-position: center; /* Centraliza a imagem */
+}
+
+.container-switch.dark{
+  background-color: #15545b;
+}
+
+
+
+
+
 main {
   user-select: none;
   display: flex;
@@ -155,40 +194,6 @@ main {
   color: #867940;
 }
 
-.container-switch {
-  width: 70px;
-  height: 30px;
-  background-color: #d4dad1;
-  border-radius: 50px;
-  position: relative;
-  cursor: pointer;
-}
-
-.container-switch .indicador { /*modo claro*/
-  width: 30px;
-  height: 30px;
-  background-color:  #fafff7;
-  background-image: url('/TaskBoard/styles/IMAGENS/sun.png'); 
-  background-size: cover;
-  background-position: center;
-  border-radius: 50%;
-  transform: scale(0.9);
-  position: absolute;
-  left: 0;
-  transition: 0.5s;
-}
-
-.container-switch.dark .indicador{ /*modo escuro*/
-  left: 26px;
-  background-color: #829d74;
-  background-image: url('/TaskBoard/styles/IMAGENS/moon.png'); /* Adicione o caminho para sua imagem */
-  background-size: cover; /* Garante que a imagem cubra completamente o círculo */
-  background-position: center; /* Centraliza a imagem */
-}
-
-.container-switch.dark{
-  background-color: #15545b;
-}
 
 /* Estilo do container de botões */
 #container-botoes{
