@@ -1,86 +1,74 @@
-// Adiciona um evento que será executado assim que o DOM for completamente carregado
 document.addEventListener("DOMContentLoaded", async () => {
-  // Obtém o elemento do dropdown no HTML
   const dropdownContent = document.getElementById("dropdown-content");
+  const dropbtn = document.getElementById("dropbtn"); // Botão do dropdown
 
   try {
-    // Faz uma requisição para a API que retorna uma lista de "boards" (quadros/painéis)
     const response = await fetch(
       "https://personal-ga2xwx9j.outsystemscloud.com/TaskBoard_CS/rest/TaskBoard/Boards"
     );
 
-    // Verifica se a resposta da API foi bem-sucedida
     if (!response.ok) {
-      throw new Error(`Erro na API: ${response.statusText}`); // Lança um erro se a resposta não for válida
+      throw new Error(`Erro na API: ${response.statusText}`);
     }
 
-    // Converte a resposta da API em um objeto JSON
     const data = await response.json();
-    console.log(data); // Exibe os dados no console para depuração
+    console.log(data);
 
-    // Chama a função para preencher o dropdown com os dados recebidos
     populateColumns(data, dropdownContent);
   } catch (error) {
-    // Captura e exibe qualquer erro ocorrido durante o carregamento dos boards
     console.error("Erro ao carregar as colunas:", error);
-    // Exibe uma mensagem de erro no dropdown caso a API falhe
     dropdownContent.innerHTML = "<li>Erro ao carregar dados</li>";
   }
+
+  // Evento de clique no botão para alternar a visibilidade do dropdown
+  dropbtn.addEventListener("click", () => {
+    // Alterna a visibilidade do dropdown
+    dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block";
+  });
+
+  // Fecha o dropdown se o usuário clicar fora dele
+  document.addEventListener("click", (event) => {
+    if (!dropbtn.contains(event.target) && !dropdownContent.contains(event.target)) {
+      dropdownContent.style.display = "none";
+    }
+  });
 });
 
 // Função que preenche o dropdown com os boards recebidos da API
 function populateColumns(data, dropdownContent) {
-  // Limpa o conteúdo existente no dropdown
   dropdownContent.innerHTML = "";
 
-  // Itera sobre cada board recebido da API
   data.forEach((board) => {
-    // Cria um item de lista (<li>) para o dropdown
     const listItem = document.createElement("li");
-
-    // Cria um link (<a>) que será inserido no item de lista
     const link = document.createElement("a");
-    link.className = "dropdown-item"; // Adiciona uma classe ao link para estilização
-    link.innerHTML = board.Name; // Define o nome do board como texto do link
-
-    // Obtém o ID do board atual
+    link.className = "dropdown-item";
+    link.innerHTML = board.Name;
     const boardId = board.Id;
-
-    // Chama a função para carregar as colunas relacionadas ao board
     carregarColunas(boardId);
 
-    // Adiciona o link ao item de lista
     listItem.appendChild(link);
-
-    // Adiciona o item de lista ao dropdown
     dropdownContent.appendChild(listItem);
   });
 }
 
-// Função para realizar o logout do usuário
-function logout() {
-  localStorage.clear(); // Limpa todos os dados armazenados localmente, como tokens de autenticação
-  window.location.href = "/index.html"; // Redireciona o usuário para a página de login
-}
-
-// Função que busca as colunas associadas a um board específico
 async function carregarColunas(boardId) {
   try {
-    // Faz uma requisição para a API que retorna as colunas de um board específico
     const response = await fetch(
       `https://personal-ga2xwx9j.outsystemscloud.com/TaskBoard_CS/rest/TaskBoard/ColumnByBoardId?BoardId=${boardId}`
     );
 
-    // Verifica se a resposta da API foi bem-sucedida
     if (!response.ok) {
-      throw new Error(`Erro na API: ${response.statusText}`); // Lança um erro se a resposta não for válida
+      throw new Error(`Erro na API: ${response.statusText}`);
     }
 
-    // Converte a resposta da API em um objeto JSON
     const data = await response.json();
-    console.log(data); // Exibe as colunas no console para depuração
+    console.log(data);
   } catch (error) {
-    // Captura e exibe qualquer erro ocorrido durante o carregamento das colunas
     console.error("Erro ao carregar as colunas:", error);
   }
+}
+
+function logout() {
+  localStorage.clear();
+  window.location.href = "/index.html";
 }

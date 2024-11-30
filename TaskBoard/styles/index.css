@@ -89,6 +89,21 @@ background-color: #0e3d42;
   background-color: #15545b;
 }
 
+.logout-button {
+  background: none;
+  width: 80px;
+  border: none;
+  font-size: 20px;
+  font-family: 'Kode Mono', monospace;
+  cursor: pointer;
+  transition: 0.5s;
+  color: #d7d8c0;
+}
+
+.logout-button :hover{
+  color: #867940;
+}
+
 
 
 
@@ -159,7 +174,7 @@ main {
 }
 
 .dropdown:hover .dropdown-content {
-  display: block;
+ display: none;
 }
 
 .name-logout {
@@ -179,20 +194,6 @@ main {
   font-weight: bold;
 }
 
-.logout-button {
-  background: none;
-  width: 80px;
-  border: none;
-  font-size: 20px;
-  font-family: 'Kode Mono', monospace;
-  cursor: pointer;
-  transition: 0.2s;
-  color: #d7d8c0;
-}
-
-.logout-button :hover{
-  color: #867940;
-}
 
 
 /* Estilo do container de botões */
