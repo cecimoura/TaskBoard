@@ -54,8 +54,6 @@ background-color: #0e3d42;
   height: 70px; 
 }
 
-
-
 main {
   user-select: none;
   display: flex;
@@ -127,7 +125,7 @@ main {
   display: block;
 }
 
-.info-logout-darkmode {
+.name-logout {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -135,26 +133,27 @@ main {
   margin-right: 30px;
 }
 
-.info-logout-darkmode p {
+.name-logout p {
   font-size: 20px;
-  color: #e8e2da;
+  color: #d7d8c0;
   border-right: #e8e2da solid 1px;
   padding: 10px;
   margin-right: 10px;
   font-weight: bold;
 }
 
-.info-logout-darkmode a {
-  text-decoration: none;
-  color: #e8e2da;
-  margin-right: 50px;
-  font-weight: bold;
+.logout-button {
+  background: none;
+  width: 80px;
+  border: none;
   font-size: 20px;
+  font-family: 'Kode Mono', monospace;
   cursor: pointer;
-  transition: 0.5s;
+  transition: 0.2s;
+  color: #d7d8c0;
 }
 
-.info-logout-darkmode a:hover{
+.logout-button :hover{
   color: #867940;
 }
 
