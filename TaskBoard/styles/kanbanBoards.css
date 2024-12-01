@@ -96,6 +96,7 @@ main {
     padding: 7px;
     border-radius: 5px;
     cursor: pointer;
+    transition: 0.5s;
   }
 
   .add-tarefa:hover{
@@ -132,4 +133,4 @@ main {
     background-color: #c9d1c3;
   }
   
- 
+  
