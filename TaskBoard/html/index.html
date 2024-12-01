@@ -15,86 +15,56 @@
     </div>
     <div class="name-logout" id="name-logout">
       <p id="nomeUser">Olá, </p> <!-- O nome do usuário será inserido aqui -->
-        <button class="logout-button" onclick="funcLogOff()">Logout</button>
+      <button class="logout-button" onclick="funcLogOff()">Logout</button>
     </div>
   </header>
 
-<nav class="navbar">
-  <div id="container-botoes">
+  <nav class="navbar">
+    <div id="container-botoes">
       <div class="dropdown" id="dropdown">
-        <button class="dropbtn" id="dropbtn" type="button" data-bs-toggle="dropdown" aria-expanded="false">All Boards</button>
+        <button class="dropbtn" id="dropbtn" type="button">All Boards</button>
         <ul class="dropdown-content" id="dropdown-content">
           <li><a class="dropdown-item" href="#">Exemplo de Quadro</a></li>
         </ul>
-        <button id="addColumn">+ Adicionar Coluna</button>
-      </div>
-    <!-- Alternância de tema -->
-       <div class="container-switch" id="container-switch">
+        <button id="addColumnButton">+ Adicionar Coluna</button>
+        <input id="new-column-title" type="text" placeholder="Digite o título da nova coluna">
+      </div><!--Fim da div dropdown-->
+      <!-- Alternância de tema -->
+      <div class="container-switch" id="container-switch">
         <div class="indicador"></div>
-       </div>
-  </div><!--Fim da div container-botoes-->
-</nav>
-
-<!--Colunas dos quadros kanban-->
-<main class="hidden-content">
-  <section class="columns">
-    <section class="column" id="column1">
-      <div class="excluir">
-        <h2 class="column-title" contenteditable="true" id="todo">
-          To do
-        </h2>
-        <i class="trash1" id="trash1"></i>
       </div>
+    </div><!--Fim da div container-botoes-->
+  </nav>
 
-      <button class="add-tarefa" id="novatarefa1">Nova tarefa</button>
-      <section class="column-cards"></section>
+  <!--Colunas dos quadros kanban-->
+  <main id="columnsContainer">
+    <section class="columns">
+      <section class="column" id="column1">
+        <div class="excluir">
+          <h2 class="column-title" contenteditable="true" id="todo">To do</h2>
+          <i class="trash"></i>
+        </div>
+        <button class="add-tarefa">Nova tarefa</button>
+        <section class="column-cards"></section>
+      </section>
+      <section class="column" id="column2">
+        <div class="excluir">
+          <h2 class="column-title" contenteditable="true" id="doing">Doing</h2>
+          <i class="trash"></i>
+        </div>
+        <button class="add-tarefa">Nova tarefa</button>
+        <section class="column-cards"></section>
+      </section>
+      <section class="column" id="column3">
+        <div class="excluir">
+          <h2 class="column-title" contenteditable="true" id="done">Done</h2>
+          <i class="trash"></i>
+        </div>
+        <button class="add-tarefa">Nova tarefa</button>
+        <section class="column-cards"></section>
+      </section>
     </section>
-    <section class="column" id="column2">
-      <div class="excluir">
-        <h2 class="column-title" contenteditable="true" id="doing">
-          Doing
-        </h2>
-        <i class="trash2" id="trash2"></i>
-      </div>
-
-      <button class="add-tarefa" id="novatarefa2">Nova tarefa</button>
-      <section class="column-cards"></section>
-    </section>
-    <section class="column" id="column3">
-      <div class="excluir">
-        <h2 class="column-title" contenteditable="true" id="review">
-          Review
-        </h2>
-        <i class="trash3" id="trash3"></i>
-      </div>
-
-      <button class="add-tarefa" id="novatarefa3">Nova tarefa</button>
-      <section class="column-cards"></section>
-    </section>
-    <section class="column" id="column4">
-      <div class="excluir">
-        <h2 class="column-title" contenteditable="true" id="done">Done</h2>
-        <i class="trash4" id="trash4"></i>
-      </div>
-
-      <button class="add-tarefa" id="novatarefa4">Nova tarefa</button>
-      <section class="column-cards"></section>
-    </section>
-  </section>
-</main>
-
-  
-
-
-  
-
-
-
-
-
-
-
-
+  </main>
 
   <script type="module" src="/TaskBoard/scripts/pages/index.js"></script> 
   <script src="/TaskBoard/scripts/pages/logout.js"></script> 

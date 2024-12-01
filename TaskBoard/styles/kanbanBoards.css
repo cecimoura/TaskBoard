@@ -1,3 +1,18 @@
+
+main {
+  user-select: none;
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+  gap: 20px;
+  overflow: auto;
+  min-height: calc(100vh - 70px);
+}
+
+.hidden {
+  display: none;
+}
+
 .columns {
     display: flex;
     gap: 15px;
@@ -37,7 +52,6 @@
     align-items: end;
   }
   
-  
   .card {
     width: 100%;
     min-height: 70px;
@@ -58,7 +72,6 @@
     font-weight: bold;
   }
   
-  
   .card__description {
     font-size: 15px;
   }
@@ -74,7 +87,7 @@
     background-color: #d6c9b4;
   }
   
-  
+  /*botao que add nova tarefa*/
   .add-tarefa {
     margin: 10px;
     background-color:  #867940;
@@ -84,39 +97,19 @@
     border-radius: 5px;
     cursor: pointer;
   }
-  
-  
-  .add-tarefa:hover,
-  .add-column-btn:hover {
+
+  .add-tarefa:hover{
     background-color: #d6c9b4;
     color: #5c542d;
     transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
   
-  
-  .add-column {
-    display: flex;
-    flex-direction: row;
-    margin-right: 30px;
-  }
-  
-  
-  .add-column-btn {
-    background-color: #455763;
-    border-radius: 5px;
-    color: #e8e2da;
-    padding: 2px;
-    margin-left: 5px;
-  }
-  
-  
   i {
     width: 8%;
     cursor: pointer;
     color: #455763;
   }
-  
   
   .excluir {
     display: flex;
@@ -125,55 +118,18 @@
     margin-right: 7px;
   }
   
-
-  .dropbtn.dark {
-    background-color: #455763;
-    color: #e8e2da;
+  #addColumnButton { 
+    padding: 10px 20px;
+    background-color: #769766;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    align-self: center;
   }
   
-  
-  .dropdown-content.dark {
-    background-color: #455763;
-    color: #e8e2da;
+  #addColumn:hover {
+    background-color: #c9d1c3;
   }
   
-  .dropdown-content.dark a {
-    color: #e8e2da;
-  }
-  
-  .dropdown-content.dark a:hover {
-    background-color: #d6c9b4;
-    color: #455763;
-  }
-  
-  .info-logout-darkmode.dark p {
-    color: #d6c9b4;
-    border-right: #d6c9b4 solid 1px;
-  }
-  
-  .info-logout-darkmode.dark a {
-    color: #d6c9b4;
-  }
-  
-  .column.dark {
-    background-color: #374a57;
-  }
-  
-  .column__title.dark {
-    color: #d6c9b4;
-  }
-  
-
-  main {
-    user-select: none;
-    display: flex;
-    justify-content: flex-start;
-    align-items: baseline;
-    gap: 20px;
-    overflow: auto;
-    min-height: calc(100vh - 70px);
-  }
-  
-  .hidden {
-    display: none;
-  }
+ 

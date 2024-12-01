@@ -1,19 +1,19 @@
-const columnsContainer = document.querySelector(".columns");
+// Seleciona o container das colunas e os elementos para adicionar nova coluna
+const containerColumns = document.querySelector(".columns");
 const addColumnInput = document.querySelector("#new-column-title");
-const addColumnButton = document.querySelector("#add-column-btn");
-let containerSwitch = document.getElementById("container-switch");
-let body = document.querySelector("body");
-let cabecalho = document.querySelector("cabecalho");
-let dropdown = document.getElementById("dropbtn");
-let nomeUser = document.getElementById("nomeUser");
+const addColumnBtn = document.querySelector("#addColumn");
+
+// Seleciona as colunas e elementos associados
 let column1 = document.getElementById("column1");
 let column2 = document.getElementById("column2");
 let column3 = document.getElementById("column3");
 let column4 = document.getElementById("column4");
-let todo = document.getElementById("todo");
-let doing = document.getElementById("doing");
-let review = document.getElementById("review");
-let done = document.getElementById("done");
+let todo = document.getElementById("todo"); // Coluna TODO
+let doing = document.getElementById("doing"); // Coluna Doing
+let review = document.getElementById("review"); // Coluna Review
+let done = document.getElementById("done"); // Coluna Done
+
+// Seleciona botões e elementos de tarefas e exclusão
 let novatarefa1 = document.getElementById("novatarefa1");
 let novatarefa2 = document.getElementById("novatarefa2");
 let novatarefa3 = document.getElementById("novatarefa3");
@@ -26,165 +26,97 @@ let botaoExcluir3 = document.getElementById("trash3");
 let botaoExcluir4 = document.getElementById("trash4");
 let dropdowncontent = document.getElementById("dropdown-content");
 
-
+// Variável global para armazenar o cartão sendo arrastado
 let draggedCard;
 
-
-trilho.addEventListener("click", () => {
-  const elementsToToggle = [
-    trilho,
-    body,
-    header,
-    dropdown,
-    info,
-    column1,
-    column2,
-    column3,
-    column4,
-    todo,
-    doing,
-    review,
-    done,
-    novatarefa1,
-    novatarefa2,
-    novatarefa3,
-    novatarefa4,
-    tituloColunaNova,
-    botaoColuna,
-    botaoExcluir1,
-    botaoExcluir2,
-    botaoExcluir3,
-    botaoExcluir4,
-    dropdowncontent,
-  ];
-
-
-  elementsToToggle.forEach((element) => element.classList.toggle("dark"));
-});
-
-
+// Função que inicia o processo de arrastar um cartão
 const dragStart = (event) => {
   draggedCard = event.target.closest(".card-container");
-  event.dataTransfer.effectAllowed = "move";
+  event.dataTransfer.effectAllowed = "move"; // Define o tipo de ação permitida
 };
 
-
+// Permite que o item seja solto ao arrastar sobre uma área válida
 const dragOver = (event) => {
-  event.preventDefault();
+  event.preventDefault(); // Evita o comportamento padrão
 };
 
-
+// Adiciona destaque ao arrastar um item sobre uma coluna válida
 const dragEnter = ({ target }) => {
-  if (target.classList.contains("column__cards")) {
-    target.classList.add("column--highlight");
+  if (target.classList.contains("column-cards")) {
+    target.classList.add("column--highlight"); // Adiciona estilo de destaque
   }
 };
 
-
+// Remove o destaque ao sair da área da coluna
 const dragLeave = ({ target }) => {
-  target.classList.remove("column--highlight");
+  target.classList.remove("column--highlight"); // Remove o estilo de destaque
 };
 
-
+// Solta o cartão na nova coluna
 const drop = ({ target }) => {
-  if (target.classList.contains("column__cards")) {
+  if (target.classList.contains("column-cards")) {
     target.classList.remove("column--highlight");
-    target.append(draggedCard);
+    target.append(draggedCard); // Move o cartão para a nova coluna
   }
 };
 
-
+// Cria um novo cartão em uma coluna
 const createCard = (columnCards) => {
   const textArea = document.createElement("textarea");
 
+  textArea.className = "card"; // Define a classe para o estilo do cartão
+  textArea.placeholder = "Digite algo..."; // Placeholder do cartão
+  textArea.spellcheck = "false"; // Desabilita a verificação ortográfica
 
-  textArea.className = "card";
-  textArea.placeholder = "Digite algo...";
-  textArea.spellcheck = "false";
-
-
+  // Evento para quando o usuário sai do campo de texto
   textArea.addEventListener("focusout", () => {
     const value = textArea.value.trim();
     if (value) {
+      // Cria o novo cartão com o texto digitado
       const newCard = document.createElement("textarea");
       const trashIcon = document.createElement("i");
 
-
-      newCard.className = "card";
-      newCard.draggable = false;
-      newCard.value = value;
+      newCard.className = "card"; // Estilo do cartão
+      newCard.draggable = false; // Desabilita arrastar o novo cartão
+      newCard.value = value; // Adiciona o texto do usuário
       newCard.placeholder = "Digite algo...";
       newCard.addEventListener("focusout", () => {
-        if (!newCard.value.trim()) newCard.remove();
+        if (!newCard.value.trim()) newCard.remove(); // Remove cartão vazio
       });
 
-
-      trashIcon.className = "bi bi-trash3-fill";
+      // Ícone de exclusão
+      trashIcon.className = "trash1";
       trashIcon.title = "Excluir";
       trashIcon.addEventListener("click", () => {
         const cardContainer = trashIcon.parentElement;
-        const resposta = confirm(
-          "Tem certeza de que deseja excluir este item?"
-        );
+        const resposta = confirm("Tem certeza de que deseja excluir este item?");
         if (resposta) {
-          cardContainer.remove();
-        } else {
-          return;
+          cardContainer.remove(); // Remove o cartão
         }
       });
 
-
-      const applyTrashIconTheme = () => {
-        const isDarkMode = body.classList.contains("dark");
-        if (isDarkMode) {
-          trashIcon.classList.add("dark");
-        } else {
-          trashIcon.classList.remove("dark");
-        }
-      };
-
-
-      applyTrashIconTheme();
-
-
+      // Contêiner do cartão
       const cardContainer = document.createElement("div");
-      cardContainer.className = "card-container";
-      cardContainer.draggable = true;
-      cardContainer.addEventListener("dragstart", dragStart);
-      cardContainer.append(newCard, trashIcon);
+      cardContainer.className = "card-container"; // Define classe para estilo
+      cardContainer.draggable = true; // Permite arrastar o cartão
+      cardContainer.addEventListener("dragstart", dragStart); // Adiciona evento de arrastar
+      cardContainer.append(newCard, trashIcon); // Adiciona o cartão e ícone ao contêiner
 
-
-      columnCards.append(cardContainer);
+      columnCards.append(cardContainer); // Adiciona o cartão à coluna
     }
-    textArea.remove();
+    textArea.remove(); // Remove o campo de texto inicial
   });
 
-
+  // Contêiner para o campo de texto do novo cartão
   const cardContainer = document.createElement("div");
   cardContainer.className = "card-container";
   cardContainer.append(textArea);
 
-
-  columnCards.append(cardContainer);
-
-
-  textArea.focus();
-
-
-  trilho.addEventListener("click", () => {
-    const isDarkMode = body.classList.contains("dark");
-    const trashIcons = columnCards.querySelectorAll(".bi-trash3-fill");
-    trashIcons.forEach((trashIcon) => {
-      if (isDarkMode) {
-        trashIcon.classList.add("dark");
-      } else {
-        trashIcon.classList.remove("dark");
-      }
-    });
-  });
+  columnCards.append(cardContainer); // Adiciona o contêiner à coluna
+  textArea.focus(); // Dá foco ao campo de texto
 };
 
-
+// Adiciona os eventos de arrastar e soltar a uma coluna
 const addDragAndDropListeners = (columnCards) => {
   columnCards.addEventListener("dragover", dragOver);
   columnCards.addEventListener("dragenter", dragEnter);
@@ -192,53 +124,53 @@ const addDragAndDropListeners = (columnCards) => {
   columnCards.addEventListener("drop", drop);
 };
 
-
+// Inicializa as colunas existentes no DOM
 const initializeColumns = () => {
-  const columns = document.querySelectorAll(".column");
+  const columns = document.querySelectorAll(".column"); // Seleciona todas as colunas
   columns.forEach((column) => {
-    const excluirIcon = column.querySelector("i");
-    excluirIcon.addEventListener("click", excluirColuna);
-    const columnCards = column.querySelector(".column__cards");
-    const addButton = column.querySelector(".add-card-btn");
+    const excluirIcon = column.querySelector("i"); // Ícone de exclusão
+    excluirIcon.addEventListener("click", excluirColuna); // Evento para excluir coluna
+    const columnCards = column.querySelector(".column__cards"); // Área para cartões
+    const addButton = column.querySelector(".add-card-btn"); // Botão para adicionar cartões
 
-
-    addDragAndDropListeners(columnCards);
-    addButton.addEventListener("click", () => createCard(columnCards));
+    addDragAndDropListeners(columnCards); // Adiciona eventos de arrastar e soltar
+    addButton.addEventListener("click", () => createCard(columnCards)); // Evento para criar novo cartão
   });
 };
 
-
+// Função para criar uma nova coluna
 const createColumn = (title) => {
+  // Cria o elemento principal da coluna
   const column = document.createElement("section");
   column.className = "column";
 
-
+  // Cria o título da coluna e torna-o editável
   const columnTitle = document.createElement("h2");
-  columnTitle.className = "column__title";
-  columnTitle.textContent = title;
-  columnTitle.contentEditable = "true";
+  columnTitle.className = "column-title";
+  columnTitle.textContent = title; // Adiciona o título da coluna
+  columnTitle.contentEditable = "true"; // Permite edição do título
 
-
+  // Cria a área onde os cartões serão armazenados
   const columnCards = document.createElement("section");
-  columnCards.className = "column__cards";
+  columnCards.className = "column-cards";
 
-
+  // Botão para adicionar novas tarefas (cartões) na coluna
   const addButton = document.createElement("button");
-  addButton.textContent = "Nova tarefa";
-  addButton.className = "add-card-btn";
-  addButton.addEventListener("click", () => createCard(columnCards));
+  addButton.textContent = "Nova tarefa"; // Texto do botão
+  addButton.className = "add-tarefa";
+  addButton.addEventListener("click", () => createCard(columnCards)); // Evento para criar um novo cartão
 
-
+  // Ícone de exclusão para a coluna
   const trashIcon = document.createElement("i");
-  trashIcon.classList = "bi bi-trash3-fill";
-  trashIcon.alt = "excluir";
-  trashIcon.addEventListener("click", excluirColuna);
+  trashIcon.classList = "trash1"; // Classe para estilização
+  trashIcon.alt = "excluir"; // Texto alternativo
+  trashIcon.addEventListener("click", excluirColuna); // Evento para excluir a coluna
 
-
+  // Container para o título e o botão de exclusão da coluna
   const excluirDiv = document.createElement("div");
   excluirDiv.className = "excluir";
 
-
+  // Função para aplicar o tema claro ou escuro
   const applyTheme = () => {
     const isDarkMode = body.classList.contains("dark");
     const elementsToStyle = [
@@ -250,7 +182,7 @@ const createColumn = (title) => {
       excluirDiv,
     ];
 
-
+    // Adiciona ou remove a classe de tema escuro nos elementos
     if (isDarkMode) {
       elementsToStyle.forEach((element) => {
         element.classList.add("dark");
@@ -262,69 +194,65 @@ const createColumn = (title) => {
     }
   };
 
-
+  // Aplica o tema inicial
   applyTheme();
 
-
+  // Adiciona o título e o ícone de exclusão ao container
   excluirDiv.append(columnTitle, trashIcon);
 
-
+  // Adiciona o título, botão e cartões à coluna
   column.append(excluirDiv, addButton, columnCards);
 
-
+  // Adiciona a nova coluna ao container principal
   columnsContainer.append(column);
 
-
+  // Adiciona os eventos de arrastar e soltar à nova coluna
   addDragAndDropListeners(columnCards);
 
-
+  // Adiciona evento para aplicar o tema quando o tema é alternado
   trilho.addEventListener("click", applyTheme);
 };
 
-
+// Evento do botão para criar uma nova coluna
 addColumnButton.addEventListener("click", () => {
-  const columnTitle = addColumnInput.value.trim();
-
+  const columnTitle = addColumnInput.value.trim(); // Obtém o título inserido pelo usuário
 
   if (columnTitle) {
-    createColumn(columnTitle);
-    addColumnInput.value = "";
+    createColumn(columnTitle); // Cria a nova coluna com o título fornecido
+    addColumnInput.value = ""; // Limpa o campo de entrada
   } else {
-    alert("Por favor, insira um título para a nova coluna!");
+    alert("Por favor, insira um título para a nova coluna!"); // Alerta caso o título esteja vazio
   }
 });
 
-
+// Função para excluir uma coluna
 const excluirColuna = (event) => {
-  const coluna = event.target.closest(".column");
-  const resposta = confirm("Tem certeza de que deseja excluir este item?");
+  const coluna = event.target.closest(".column"); // Encontra a coluna associada ao botão de exclusão
+  const resposta = confirm("Tem certeza de que deseja excluir este item?"); // Confirmação do usuário
   if (resposta) {
-    coluna.remove();
-  } else {
-    return;
+    coluna.remove(); // Remove a coluna
   }
 };
 
-
+// Função para recuperar os dados do usuário armazenados no localStorage
 function recuperarDados() {
-  const userData = localStorage.getItem("user");
-
+  const userData = localStorage.getItem("user"); // Recupera os dados do usuário do localStorage
 
   if (userData) {
-    const user = JSON.parse(userData);
-    console.log(user);
-
+    const user = JSON.parse(userData); // Converte os dados de JSON para objeto
+    console.log(user); // Log dos dados do usuário para depuração
 
     const userNameElement = document.getElementById("nomeFulana");
 
-
+    // Extrai o primeiro nome do usuário
     const primeiroNome = user.nome.split(" ")[0];
-    userNameElement.innerHTML = `Olá, ${primeiroNome}!`;
+    userNameElement.innerHTML = `Olá, ${primeiroNome}!`; // Exibe a saudação personalizada
   } else {
-    userNameElement.innerHTML = "Bem vindo!";
+    userNameElement.innerHTML = "Bem-vindo!"; // Exibe saudação padrão caso não haja dados do usuário
   }
 }
 
-
+// Chama as funções para inicializar os dados do usuário e as colunas
 recuperarDados();
 initializeColumns();
+

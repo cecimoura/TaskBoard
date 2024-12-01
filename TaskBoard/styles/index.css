@@ -197,8 +197,6 @@ background-color: #0e3d42;
   border-color: #042b2e;
 }
 
-
-
 .dropbtn {
   font-family: 'Kode Mono', monospace;
   background-color:#e5eef4;
@@ -284,20 +282,7 @@ background-color: #0e3d42;
   color: #867940;
 }
 
-/*Botao que vai adicionar novas colunas*/
-#addColumn { 
-  padding: 10px 20px;
-  background-color: #769766;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  align-self: center;
-}
 
-#addColumn:hover {
-  background-color: #c9d1c3;
-}
 
 
 
