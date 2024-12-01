@@ -5,7 +5,6 @@
     padding: 30px;
   }
   
-  
   .column {
     width: 250px;
     background-color: #e8e2da;
@@ -17,22 +16,19 @@
     overflow-x: hidden;
   }
   
-  
-  .column__title {
-    color: #455763;
+  .column-title {
+    color:  #867940;
     font-size: 0.9rem;
     font-size: 20px;
     font-weight: bold;
     margin: 20px;
   }
   
-  
-  .column__cards {
+  .column-cards {
     padding: 4px;
     height: 100%;
     border-radius: 5px;
   }
-  
   
   .card-container {
     margin-bottom: 8px;
@@ -79,10 +75,10 @@
   }
   
   
-  .add-card-btn {
+  .add-tarefa {
     margin: 10px;
-    background-color: #455763;
-    color: #e8e2da;
+    background-color:  #867940;
+    color: #e8ddcf; 
     border: none;
     padding: 7px;
     border-radius: 5px;
@@ -90,9 +86,10 @@
   }
   
   
-  .add-card-btn:hover,
+  .add-tarefa:hover,
   .add-column-btn:hover {
     background-color: #d6c9b4;
+    color: #5c542d;
     transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
@@ -128,14 +125,7 @@
     margin-right: 7px;
   }
   
-  
-  .trilho.dark {
-    background-color: #455763;
-  }
-  
-  
-  
-  
+
   .dropbtn.dark {
     background-color: #455763;
     color: #e8e2da;
@@ -147,43 +137,43 @@
     color: #e8e2da;
   }
   
-  
   .dropdown-content.dark a {
     color: #e8e2da;
   }
-  
   
   .dropdown-content.dark a:hover {
     background-color: #d6c9b4;
     color: #455763;
   }
   
-  
   .info-logout-darkmode.dark p {
     color: #d6c9b4;
     border-right: #d6c9b4 solid 1px;
   }
   
-  
   .info-logout-darkmode.dark a {
     color: #d6c9b4;
   }
-  
   
   .column.dark {
     background-color: #374a57;
   }
   
-  
   .column__title.dark {
     color: #d6c9b4;
   }
   
-  
-  .bi-trash3-fill.dark,
-  .excluir.dark {
-    color: #d6c9b4;
+
+  main {
+    user-select: none;
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+    gap: 20px;
+    overflow: auto;
+    min-height: calc(100vh - 70px);
   }
   
-  
-  
+  .hidden {
+    display: none;
+  }
