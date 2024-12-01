@@ -13,8 +13,5 @@ function clickTema() {
     });
 }
 
-
-
-
 // Inicialização
 clickTema();

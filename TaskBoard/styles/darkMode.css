@@ -5,7 +5,6 @@
   margin:0.1px;
 }
 
-
 /* Estilo do título */
 h1 {
   color:#a0a179;
@@ -18,7 +17,6 @@ body {
   font-family: 'Kode Mono', monospace;
   min-width: 1200px;
 }
-
 
 /* Estilo do cabeçalho */
 .cabecalho {
@@ -95,23 +93,12 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
-
-
-
-
-
-
 .container-botoes{
   background-color:  #042b2e;
   width: 100%;
   height: 50px;
   border:   #042b2e 1px solid;
 }
-
-
-
-
-
 
 .container-filtragem {
   display: flex;
