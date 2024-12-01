@@ -1,11 +1,10 @@
-
 main {
   user-select: none;
   display: flex;
   justify-content: flex-start;
   align-items: baseline;
   gap: 20px;
-  overflow: auto;
+  overflow-x: auto;
   min-height: calc(100vh - 70px);
 }
 
@@ -14,123 +13,146 @@ main {
 }
 
 .columns {
-    display: flex;
-    gap: 15px;
-    margin-top: 50px;
-    padding: 30px;
-  }
-  
-  .column {
-    width: 250px;
-    background-color: #e8e2da;
-    border-radius: 8px;
-    padding: 10px;
-    height: fit-content;
-    min-width: 200px;
-    overflow-y: auto;
-    overflow-x: hidden;
-  }
-  
-  .column-title {
-    color:  #867940;
-    font-size: 0.9rem;
-    font-size: 20px;
-    font-weight: bold;
-    margin: 20px;
-  }
-  
-  .column-cards {
-    padding: 4px;
-    height: 100%;
-    border-radius: 5px;
-  }
-  
-  .card-container {
-    margin-bottom: 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: end;
-  }
-  
-  .card {
-    width: 100%;
-    min-height: 70px;
-    background-color: #d3dadc;
-    border-radius: 5px;
-    border: 1px solid #d6c9b4;
-    box-shadow: 0 2px 2px #455763;
-    padding: 12px 14px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: #455763;
-    margin-bottom: 5px;
-  }
-  
-  
-  .card__title {
-    font-size: 18px;
-    font-weight: bold;
-  }
-  
-  .card__description {
-    font-size: 15px;
-  }
-  
-  
-  .card__title-input,
-  .card__description-input {
-    background-color: #e8e2da;
-  }
-  
-  
-  .column--highlight {
-    background-color: #d6c9b4;
-  }
-  
-  /*botao que add nova tarefa*/
-  .add-tarefa {
-    margin: 10px;
-    background-color:  #867940;
-    color: #e8ddcf; 
-    border: none;
-    padding: 7px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.5s;
-  }
+  display: flex;
+  gap: 15px;
+  margin-top: 50px;
+  padding: 30px;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
 
-  .add-tarefa:hover{
-    background-color: #d6c9b4;
-    color: #5c542d;
-    transform: scale(1.05);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  i {
-    width: 8%;
-    cursor: pointer;
-    color: #455763;
-  }
-  
-  .excluir {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-right: 7px;
-  }
-  
-  #addColumnButton { 
-    padding: 10px 20px;
-    background-color: #769766;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    align-self: center;
-  }
-  
-  #addColumn:hover {
-    background-color: #c9d1c3;
-  }
-  
-  
+.column {
+  width: 250px;
+  background-color: #e8e2da;
+  border-radius: 8px;
+  padding: 10px;
+  min-width: 200px;
+  height: fit-content;
+}
+
+.column-title {
+  color: #867940;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+  padding: 10px 0;
+}
+
+.column-cards {
+  padding: 4px;
+  height: 100%;
+  border-radius: 5px;
+}
+
+.card-container {
+  margin-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.card {
+  width: 100%;
+  min-height: 70px;
+  background-color: #d3dadc;
+  border-radius: 5px;
+  border: 1px solid #d6c9b4;
+  box-shadow: 0 2px 2px #455763;
+  padding: 12px 14px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #455763;
+  margin-bottom: 5px;
+}
+
+.card__title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.card__description {
+  font-size: 15px;
+}
+
+.card__title-input,
+.card__description-input {
+  background-color: #e8e2da;
+}
+
+.column--highlight {
+  background-color: #d6c9b4;
+}
+
+/* Botão para adicionar nova tarefa */
+.add-tarefa {
+  margin: 10px;
+  background-color: #867940;
+  color: #e8ddcf;
+  border: none;
+  padding: 7px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.add-tarefa:hover {
+  background-color: #d6c9b4;
+  color: #5c542d;
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+
+.excluir {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 7px;
+}
+
+#addColumnButton {
+  padding: 10px 20px;
+  background-color: #769766;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  align-self: center;
+  position: relative;
+  top: 10%;
+}
+
+#addColumnButton:hover {
+  background-color: #c9d1c3;
+}
+
+.column-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.delete-column {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.delete-column:hover {
+  background-color: #e63939;
+}
+
+.delete-card-icon {
+  font-size: 18px;
+  color: red;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.delete-card-icon:hover {
+  color: darkred;
+}
