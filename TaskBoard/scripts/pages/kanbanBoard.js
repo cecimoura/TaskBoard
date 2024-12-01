@@ -1,138 +1,330 @@
-//manuseio das colunas kanban
-const columns = document.querySelectorAll(".column"); // Seleciona todos os elementos com a classe "column"
+const columnsContainer = document.querySelector(".columns");
+const addColumnInput = document.querySelector("#new-column-title");
+const addColumnButton = document.querySelector("#add-column-btn");
+let containerSwitch = document.getElementById("container-switch");
+let body = document.querySelector("body");
+let cabecalho = document.querySelector("cabecalho");
+let dropdown = document.getElementById("dropbtn");
+let nomeUser = document.getElementById("nomeUser");
+let column1 = document.getElementById("column1");
+let column2 = document.getElementById("column2");
+let column3 = document.getElementById("column3");
+let column4 = document.getElementById("column4");
+let todo = document.getElementById("todo");
+let doing = document.getElementById("doing");
+let review = document.getElementById("review");
+let done = document.getElementById("done");
+let novatarefa1 = document.getElementById("novatarefa1");
+let novatarefa2 = document.getElementById("novatarefa2");
+let novatarefa3 = document.getElementById("novatarefa3");
+let novatarefa4 = document.getElementById("novatarefa4");
+let tituloColunaNova = document.getElementById("new-column-title");
+let botaoColuna = document.getElementById("add-column-btn");
+let botaoExcluir1 = document.getElementById("trash1");
+let botaoExcluir2 = document.getElementById("trash2");
+let botaoExcluir3 = document.getElementById("trash3");
+let botaoExcluir4 = document.getElementById("trash4");
+let dropdowncontent = document.getElementById("dropdown-content");
 
 
-document.addEventListener("dragstart", (e) => { // Add um evento quando um elemento é arrastado
-    e.target.classList.add("dragging");  // Add a classe "dragging" ao elemento que está sendo arrastado
+let draggedCard;
+
+
+trilho.addEventListener("click", () => {
+  const elementsToToggle = [
+    trilho,
+    body,
+    header,
+    dropdown,
+    info,
+    column1,
+    column2,
+    column3,
+    column4,
+    todo,
+    doing,
+    review,
+    done,
+    novatarefa1,
+    novatarefa2,
+    novatarefa3,
+    novatarefa4,
+    tituloColunaNova,
+    botaoColuna,
+    botaoExcluir1,
+    botaoExcluir2,
+    botaoExcluir3,
+    botaoExcluir4,
+    dropdowncontent,
+  ];
+
+
+  elementsToToggle.forEach((element) => element.classList.toggle("dark"));
 });
 
 
-document.addEventListener("dragend", (e) => { //Add um evento quando termina de arrastar um elemento
-    e.target.classList.remove("dragging");
-});
+const dragStart = (event) => {
+  draggedCard = event.target.closest(".card-container");
+  event.dataTransfer.effectAllowed = "move";
+};
 
 
-columns.forEach((item) => {
-    item.addEventListener("dragover", (e) => { // Add um evento para quando algo é arrastado sobre a coluna
-        e.preventDefault(); // Impede o comportamento padrão do "dragover" (necessário para permitir o drop)
-       
-        const dragging = document.querySelector(".dragging");  // Seleciona o elemento que está sendo arrastado
-       
-        // leva o item para onde será inserido, com base na posição do cursor
-        const applyAfter = getNewPosition(item, e.clientY);
+const dragOver = (event) => {
+  event.preventDefault();
+};
 
 
-        if (applyAfter) {
-            // Se houver um elemento de referência, insere o item arrastado depois dele
-            applyAfter.insertAdjacentElement("afterend", dragging);
+const dragEnter = ({ target }) => {
+  if (target.classList.contains("column__cards")) {
+    target.classList.add("column--highlight");
+  }
+};
+
+
+const dragLeave = ({ target }) => {
+  target.classList.remove("column--highlight");
+};
+
+
+const drop = ({ target }) => {
+  if (target.classList.contains("column__cards")) {
+    target.classList.remove("column--highlight");
+    target.append(draggedCard);
+  }
+};
+
+
+const createCard = (columnCards) => {
+  const textArea = document.createElement("textarea");
+
+
+  textArea.className = "card";
+  textArea.placeholder = "Digite algo...";
+  textArea.spellcheck = "false";
+
+
+  textArea.addEventListener("focusout", () => {
+    const value = textArea.value.trim();
+    if (value) {
+      const newCard = document.createElement("textarea");
+      const trashIcon = document.createElement("i");
+
+
+      newCard.className = "card";
+      newCard.draggable = false;
+      newCard.value = value;
+      newCard.placeholder = "Digite algo...";
+      newCard.addEventListener("focusout", () => {
+        if (!newCard.value.trim()) newCard.remove();
+      });
+
+
+      trashIcon.className = "bi bi-trash3-fill";
+      trashIcon.title = "Excluir";
+      trashIcon.addEventListener("click", () => {
+        const cardContainer = trashIcon.parentElement;
+        const resposta = confirm(
+          "Tem certeza de que deseja excluir este item?"
+        );
+        if (resposta) {
+          cardContainer.remove();
         } else {
-            // Se não houver referência, insere o item arrastado no início da coluna
-            item.prepend(dragging);
+          return;
         }
+      });
+
+
+      const applyTrashIconTheme = () => {
+        const isDarkMode = body.classList.contains("dark");
+        if (isDarkMode) {
+          trashIcon.classList.add("dark");
+        } else {
+          trashIcon.classList.remove("dark");
+        }
+      };
+
+
+      applyTrashIconTheme();
+
+
+      const cardContainer = document.createElement("div");
+      cardContainer.className = "card-container";
+      cardContainer.draggable = true;
+      cardContainer.addEventListener("dragstart", dragStart);
+      cardContainer.append(newCard, trashIcon);
+
+
+      columnCards.append(cardContainer);
+    }
+    textArea.remove();
+  });
+
+
+  const cardContainer = document.createElement("div");
+  cardContainer.className = "card-container";
+  cardContainer.append(textArea);
+
+
+  columnCards.append(cardContainer);
+
+
+  textArea.focus();
+
+
+  trilho.addEventListener("click", () => {
+    const isDarkMode = body.classList.contains("dark");
+    const trashIcons = columnCards.querySelectorAll(".bi-trash3-fill");
+    trashIcons.forEach((trashIcon) => {
+      if (isDarkMode) {
+        trashIcon.classList.add("dark");
+      } else {
+        trashIcon.classList.remove("dark");
+      }
     });
+  });
+};
+
+
+const addDragAndDropListeners = (columnCards) => {
+  columnCards.addEventListener("dragover", dragOver);
+  columnCards.addEventListener("dragenter", dragEnter);
+  columnCards.addEventListener("dragleave", dragLeave);
+  columnCards.addEventListener("drop", drop);
+};
+
+
+const initializeColumns = () => {
+  const columns = document.querySelectorAll(".column");
+  columns.forEach((column) => {
+    const excluirIcon = column.querySelector("i");
+    excluirIcon.addEventListener("click", excluirColuna);
+    const columnCards = column.querySelector(".column__cards");
+    const addButton = column.querySelector(".add-card-btn");
+
+
+    addDragAndDropListeners(columnCards);
+    addButton.addEventListener("click", () => createCard(columnCards));
+  });
+};
+
+
+const createColumn = (title) => {
+  const column = document.createElement("section");
+  column.className = "column";
+
+
+  const columnTitle = document.createElement("h2");
+  columnTitle.className = "column__title";
+  columnTitle.textContent = title;
+  columnTitle.contentEditable = "true";
+
+
+  const columnCards = document.createElement("section");
+  columnCards.className = "column__cards";
+
+
+  const addButton = document.createElement("button");
+  addButton.textContent = "Nova tarefa";
+  addButton.className = "add-card-btn";
+  addButton.addEventListener("click", () => createCard(columnCards));
+
+
+  const trashIcon = document.createElement("i");
+  trashIcon.classList = "bi bi-trash3-fill";
+  trashIcon.alt = "excluir";
+  trashIcon.addEventListener("click", excluirColuna);
+
+
+  const excluirDiv = document.createElement("div");
+  excluirDiv.className = "excluir";
+
+
+  const applyTheme = () => {
+    const isDarkMode = body.classList.contains("dark");
+    const elementsToStyle = [
+      column,
+      columnTitle,
+      columnCards,
+      addButton,
+      trashIcon,
+      excluirDiv,
+    ];
+
+
+    if (isDarkMode) {
+      elementsToStyle.forEach((element) => {
+        element.classList.add("dark");
+      });
+    } else {
+      elementsToStyle.forEach((element) => {
+        element.classList.remove("dark");
+      });
+    }
+  };
+
+
+  applyTheme();
+
+
+  excluirDiv.append(columnTitle, trashIcon);
+
+
+  column.append(excluirDiv, addButton, columnCards);
+
+
+  columnsContainer.append(column);
+
+
+  addDragAndDropListeners(columnCards);
+
+
+  trilho.addEventListener("click", applyTheme);
+};
+
+
+addColumnButton.addEventListener("click", () => {
+  const columnTitle = addColumnInput.value.trim();
+
+
+  if (columnTitle) {
+    createColumn(columnTitle);
+    addColumnInput.value = "";
+  } else {
+    alert("Por favor, insira um título para a nova coluna!");
+  }
 });
 
 
-// Função que determina a nova posição de um item dentro de uma coluna
-function getNewPosition(column, posY) {
-    // Seleciona todos os itens na coluna, exceto aquele que está sendo arrastado
-    const cards = column.querySelectorAll(".item:not(.dragging)");
-    let result = null; // Inicializa a variável result como null para representar nenhuma posição encontrada
+const excluirColuna = (event) => {
+  const coluna = event.target.closest(".column");
+  const resposta = confirm("Tem certeza de que deseja excluir este item?");
+  if (resposta) {
+    coluna.remove();
+  } else {
+    return;
+  }
+};
 
 
-    // cada cartão na coluna
-    for (let refer_card of cards) {
-        const box = refer_card.getBoundingClientRect(); // Obtém as dimensões e a posição do cartão
-       
-        const boxCenterY = box.y + box.height / 2; // Calcula a posição vertical central do cartão
+function recuperarDados() {
+  const userData = localStorage.getItem("user");
 
 
-        // Se o cursor estiver abaixo do centro do cartão, este é o novo ponto de referência
-        if (posY >= boxCenterY) result = refer_card;
-    }
+  if (userData) {
+    const user = JSON.parse(userData);
+    console.log(user);
 
 
-    // Retorna o cartão de referência ou null, se nenhum foi encontrado
-    return result;
+    const userNameElement = document.getElementById("nomeFulana");
+
+
+    const primeiroNome = user.nome.split(" ")[0];
+    userNameElement.innerHTML = `Olá, ${primeiroNome}!`;
+  } else {
+    userNameElement.innerHTML = "Bem vindo!";
+  }
 }
 
 
-document.getElementById('addColumn').addEventListener('click', function () {
-  const columnsContainer = document.getElementById('columnsContainer');
-
-
-  // Criar nova coluna
-  const newColumn = document.createElement('div');
-  newColumn.classList.add('column');
-
-
-  // Cabeçalho da coluna com botões
-  const columnHeader = document.createElement('div');
-  columnHeader.classList.add('column-header');
-
-
-  const columnTitle = document.createElement('span');
-  columnTitle.classList.add('column-title');
-  columnTitle.textContent = 'Nova Coluna';
-
-
-  const editButton = document.createElement('button');
-  editButton.classList.add('edit-column');
-  editButton.textContent = 'Editar';
-  editButton.addEventListener('click', function () {
-      const newTitle = prompt('Digite o novo título da coluna:', columnTitle.textContent);
-      if (newTitle) {
-          columnTitle.textContent = newTitle;
-      }
-  });
-
-
-  const deleteButton = document.createElement('button');
-  deleteButton.classList.add('delete-column');
-  deleteButton.textContent = 'Excluir';
-  deleteButton.addEventListener('click', function () {
-      if (confirm('Tem certeza que deseja excluir esta coluna?')) {
-          newColumn.remove();
-      }
-  });
-
-
-  columnHeader.appendChild(columnTitle);
-  columnHeader.appendChild(editButton);
-  columnHeader.appendChild(deleteButton);
-  newColumn.appendChild(columnHeader);
-
-
-  // Adicionar um card exemplo
-  const placeholderCard = document.createElement('div');
-  placeholderCard.classList.add('item');
-  placeholderCard.textContent = 'Novo Card';
-  newColumn.appendChild(placeholderCard);
-
-
-  // Adicionar a coluna ao container
-  columnsContainer.appendChild(newColumn);
-});
-
-
-// Função para adicionar os eventos a colunas já existentes
-document.querySelectorAll('.column').forEach(column => {
-  const columnTitle = column.querySelector('.column-title');
-  const editButton = column.querySelector('.edit-column');
-  const deleteButton = column.querySelector('.delete-column');
-
-
-  editButton.addEventListener('click', function () {
-      const newTitle = prompt('Digite o novo título da coluna:', columnTitle.textContent);
-      if (newTitle) {
-          columnTitle.textContent = newTitle;
-      }
-  });
-
-
-  deleteButton.addEventListener('click', function () {
-      if (confirm('Tem certeza que deseja excluir esta coluna?')) {
-          column.remove();
-      }
-  });
-});
+recuperarDados();
+initializeColumns();
