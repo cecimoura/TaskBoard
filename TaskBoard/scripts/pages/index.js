@@ -25,3 +25,6 @@ function logout() {
 
 // Exporta a função logout, caso precise usá-la em algum outro lugar
 export { logout };
+
+
+  
