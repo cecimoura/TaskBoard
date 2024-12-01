@@ -8,10 +8,6 @@ main {
   min-height: calc(100vh - 70px);
 }
 
-.hidden {
-  display: none;
-}
-
 .columns {
   display: flex;
   gap: 15px;
@@ -28,6 +24,7 @@ main {
   padding: 10px;
   min-width: 200px;
   height: fit-content;
+  outline: rgb(128, 159, 110) 2px solid;
 }
 
 .column-title {
@@ -36,51 +33,6 @@ main {
   font-weight: bold;
   margin: 0;
   padding: 10px 0;
-}
-
-.column-cards {
-  padding: 4px;
-  height: 100%;
-  border-radius: 5px;
-}
-
-.card-container {
-  margin-bottom: 8px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-}
-
-.card {
-  width: 100%;
-  min-height: 70px;
-  background-color: #d3dadc;
-  border-radius: 5px;
-  border: 1px solid #d6c9b4;
-  box-shadow: 0 2px 2px #455763;
-  padding: 12px 14px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: #455763;
-  margin-bottom: 5px;
-}
-
-.card__title {
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.card__description {
-  font-size: 15px;
-}
-
-.card__title-input,
-.card__description-input {
-  background-color: #e8e2da;
-}
-
-.column--highlight {
-  background-color: #d6c9b4;
 }
 
 /* Botão para adicionar nova tarefa */
@@ -100,15 +52,6 @@ main {
   color: #5c542d;
   transform: scale(1.05);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-
-
-.excluir {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-right: 7px;
 }
 
 #addColumnButton {
@@ -134,7 +77,7 @@ main {
 }
 
 .delete-column {
-  background-color: #ff4d4d;
+  background-color: #7fab72;
   color: white;
   border: none;
   padding: 5px 10px;
