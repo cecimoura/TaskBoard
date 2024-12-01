@@ -1,161 +1,138 @@
+//manuseio das colunas kanban
+const columns = document.querySelectorAll(".column"); // Seleciona todos os elementos com a classe "column"
 
-// Carrega os boards e tarefas da API
-document.addEventListener('DOMContentLoaded', async () => {
-    const addColumnButton = document.getElementById('addColumn');
-    const columnsContainer = document.getElementById('columnsContainer');
-    
-    // Carrega os boards da API
-    async function loadBoards() {
-      try {
-        const response = await fetch('https://personal-ga2xwx9j.outsystemscloud.com/TaskBoard_CS/rest/TaskBoard/Boards');
-        if (!response.ok) {
-          throw new Error('Erro ao carregar os boards');
+
+document.addEventListener("dragstart", (e) => { // Add um evento quando um elemento é arrastado
+    e.target.classList.add("dragging");  // Add a classe "dragging" ao elemento que está sendo arrastado
+});
+
+
+document.addEventListener("dragend", (e) => { //Add um evento quando termina de arrastar um elemento
+    e.target.classList.remove("dragging");
+});
+
+
+columns.forEach((item) => {
+    item.addEventListener("dragover", (e) => { // Add um evento para quando algo é arrastado sobre a coluna
+        e.preventDefault(); // Impede o comportamento padrão do "dragover" (necessário para permitir o drop)
+       
+        const dragging = document.querySelector(".dragging");  // Seleciona o elemento que está sendo arrastado
+       
+        // leva o item para onde será inserido, com base na posição do cursor
+        const applyAfter = getNewPosition(item, e.clientY);
+
+
+        if (applyAfter) {
+            // Se houver um elemento de referência, insere o item arrastado depois dele
+            applyAfter.insertAdjacentElement("afterend", dragging);
+        } else {
+            // Se não houver referência, insere o item arrastado no início da coluna
+            item.prepend(dragging);
         }
-  
-        const boards = await response.json();
-        boards.forEach(board => {
-          createColumn(board);
-        });
-      } catch (error) {
-        console.error('Erro ao carregar os boards:', error);
+    });
+});
+
+
+// Função que determina a nova posição de um item dentro de uma coluna
+function getNewPosition(column, posY) {
+    // Seleciona todos os itens na coluna, exceto aquele que está sendo arrastado
+    const cards = column.querySelectorAll(".item:not(.dragging)");
+    let result = null; // Inicializa a variável result como null para representar nenhuma posição encontrada
+
+
+    // cada cartão na coluna
+    for (let refer_card of cards) {
+        const box = refer_card.getBoundingClientRect(); // Obtém as dimensões e a posição do cartão
+       
+        const boxCenterY = box.y + box.height / 2; // Calcula a posição vertical central do cartão
+
+
+        // Se o cursor estiver abaixo do centro do cartão, este é o novo ponto de referência
+        if (posY >= boxCenterY) result = refer_card;
+    }
+
+
+    // Retorna o cartão de referência ou null, se nenhum foi encontrado
+    return result;
+}
+
+
+document.getElementById('addColumn').addEventListener('click', function () {
+  const columnsContainer = document.getElementById('columnsContainer');
+
+
+  // Criar nova coluna
+  const newColumn = document.createElement('div');
+  newColumn.classList.add('column');
+
+
+  // Cabeçalho da coluna com botões
+  const columnHeader = document.createElement('div');
+  columnHeader.classList.add('column-header');
+
+
+  const columnTitle = document.createElement('span');
+  columnTitle.classList.add('column-title');
+  columnTitle.textContent = 'Nova Coluna';
+
+
+  const editButton = document.createElement('button');
+  editButton.classList.add('edit-column');
+  editButton.textContent = 'Editar';
+  editButton.addEventListener('click', function () {
+      const newTitle = prompt('Digite o novo título da coluna:', columnTitle.textContent);
+      if (newTitle) {
+          columnTitle.textContent = newTitle;
       }
-    }
-  
-    // Função para criar a coluna na UI
-    async function createColumn(board) {
-      const newColumn = document.createElement('div');
-      newColumn.classList.add('column');
-      newColumn.setAttribute('id', board.Id);
-  
-      newColumn.innerHTML = `
-        <div class="column-header">
-          <div id="header-botoes">
-            <span class="column-title">${board.Name}</span>
-            <button class="edit-column">Editar</button>
-            <button class="delete-column">Excluir</button>
-            <button class="add-tarefa-column">+</button>
-          </div>
-        </div>
-        <div class="tasks"></div>
-      `;
-  
-      columnsContainer.appendChild(newColumn);
-  
-      // Função para carregar as tarefas de cada coluna
-      const tasksContainer = newColumn.querySelector('.tasks');
-      await loadTasks(board.Id, tasksContainer);
-  
-      // Eventos dos botões
-      const addTaskButton = newColumn.querySelector('.add-tarefa-column');
-      const deleteColumnButton = newColumn.querySelector('.delete-column');
-      const editColumnButton = newColumn.querySelector('.edit-column');
-  
-      addTaskButton.addEventListener('click', () => {
-        const taskName = prompt('Digite o nome da nova tarefa');
-        if (taskName) {
-          addTask(board.Id, taskName, tasksContainer);
-        }
-      });
-  
-      deleteColumnButton.addEventListener('click', async () => {
-        await deleteBoard(board.Id);
-        newColumn.remove();
-      });
-  
-      editColumnButton.addEventListener('click', () => {
-        const newTitle = prompt('Digite o novo nome da coluna');
-        if (newTitle) {
-          updateBoard(board.Id, newTitle, newColumn);
-        }
-      });
-    }
-  
-    // Função para carregar as tarefas de uma coluna específica
-    async function loadTasks(boardId, tasksContainer) {
-      try {
-        const response = await fetch(`https://personal-ga2xwx9j.outsystemscloud.com/TaskBoard_CS/rest/TaskBoard/ColumnByBoardId?BoardId=${boardId}`);
-        if (!response.ok) {
-          throw new Error('Erro ao carregar as tarefas');
-        }
-  
-        const tasks = await response.json();
-        tasks.forEach(task => {
-          addTaskToColumn(task, tasksContainer);
-        });
-      } catch (error) {
-        console.error('Erro ao carregar as tarefas:', error);
-      }
-    }
-  
-    // Função para adicionar uma tarefa à coluna
-    async function addTask(boardId, taskName, tasksContainer) {
-      try {
-        const response = await fetch('https://personal-ga2xwx9j.outsystemscloud.com/TaskBoard_CS/rest/TaskBoard/Task', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            BoardId: boardId,
-            Name: taskName
-          })
-        });
-        const newTask = await response.json();
-        addTaskToColumn(newTask, tasksContainer);
-      } catch (error) {
-        console.error('Erro ao adicionar tarefa:', error);
-      }
-    }
-  
-    // Função para adicionar a tarefa na UI
-    function addTaskToColumn(task, tasksContainer) {
-      const newTask = document.createElement('div');
-      newTask.classList.add('item');
-      newTask.setAttribute('draggable', 'true');
-      newTask.textContent = task.Name;
-      newTask.setAttribute('data-id', task.Id);
-  
-      tasksContainer.appendChild(newTask);
-      addDragAndDropEvent(newTask);
-    }
-  
-    // Função para excluir um board
-    async function deleteBoard(boardId) {
-      try {
-        const response = await fetch(`https://personal-ga2xwx9j.outsystemscloud.com/TaskBoard_CS/rest/TaskBoard/Board/${boardId}`, {
-          method: 'DELETE'
-        });
-        if (!response.ok) {
-          throw new Error('Erro ao excluir o board');
-        }
-      } catch (error) {
-        console.error('Erro ao excluir o board:', error);
-      }
-    }
-  
-    // Função para atualizar o nome de um board
-    async function updateBoard(boardId, newTitle, columnElement) {
-      try {
-        const response = await fetch(`https://personal-ga2xwx9j.outsystemscloud.com/TaskBoard_CS/rest/TaskBoard/Board/${boardId}`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            Id: boardId,
-            Name: newTitle
-          })
-        });
-        if (!response.ok) {
-          throw new Error('Erro ao atualizar o board');
-        }
-  
-        columnElement.querySelector('.column-title').textContent = newTitle;
-      } catch (error) {
-        console.error('Erro ao atualizar o board:', error);
-      }
-    }
-  
-    // Habilita o carregamento inicial dos boards
-    loadBoards();
   });
+
+
+  const deleteButton = document.createElement('button');
+  deleteButton.classList.add('delete-column');
+  deleteButton.textContent = 'Excluir';
+  deleteButton.addEventListener('click', function () {
+      if (confirm('Tem certeza que deseja excluir esta coluna?')) {
+          newColumn.remove();
+      }
+  });
+
+
+  columnHeader.appendChild(columnTitle);
+  columnHeader.appendChild(editButton);
+  columnHeader.appendChild(deleteButton);
+  newColumn.appendChild(columnHeader);
+
+
+  // Adicionar um card exemplo
+  const placeholderCard = document.createElement('div');
+  placeholderCard.classList.add('item');
+  placeholderCard.textContent = 'Novo Card';
+  newColumn.appendChild(placeholderCard);
+
+
+  // Adicionar a coluna ao container
+  columnsContainer.appendChild(newColumn);
+});
+
+
+// Função para adicionar os eventos a colunas já existentes
+document.querySelectorAll('.column').forEach(column => {
+  const columnTitle = column.querySelector('.column-title');
+  const editButton = column.querySelector('.edit-column');
+  const deleteButton = column.querySelector('.delete-column');
+
+
+  editButton.addEventListener('click', function () {
+      const newTitle = prompt('Digite o novo título da coluna:', columnTitle.textContent);
+      if (newTitle) {
+          columnTitle.textContent = newTitle;
+      }
+  });
+
+
+  deleteButton.addEventListener('click', function () {
+      if (confirm('Tem certeza que deseja excluir esta coluna?')) {
+          column.remove();
+      }
+  });
+});

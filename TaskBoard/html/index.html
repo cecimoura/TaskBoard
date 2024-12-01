@@ -14,53 +14,47 @@
     </div>
     <div class="name-logout" id="name-logout">
       <p id="nomeUser">Olá, </p> <!-- O nome do usuário será inserido aqui -->
-      <button class="logout-button" onclick="funcLogOff()">Logout</button>
-      <div class="botao-logout">
+     
     
-      </div>
-      <!-- Alternância de tema -->
-        <div class="container-switch" id="container-switch">
-          <div class="indicador"></div>
-        </div>
+
+      
+        <button class="logout-button" onclick="funcLogOff()">Logout</button>
     </div>
   </header>
 
-  <nav class="navbar">
-    <div id="container-botoes">
+<nav class="navbar">
+  <div id="container-botoes">
       <div class="dropdown" id="dropdown">
         <button class="dropbtn" id="dropbtn" type="button" data-bs-toggle="dropdown" aria-expanded="false">All Boards</button>
         <ul class="dropdown-content" id="dropdown-content">
           <li><a class="dropdown-item" href="#">Exemplo de Quadro</a></li>
         </ul>
+        <button id="addColumn">+ Adicionar Coluna</button>
       </div>
-    </div>
-  </nav>
+    <!-- Alternância de tema -->
+       <div class="container-switch" id="container-switch">
+        <div class="indicador"></div>
+       </div>
+  </div><!--Fim da div container-botoes-->
+</nav>
 
-  <div class="kanban-board">
-    <!-- Coluna 1: A Fazer -->
-    <div class="kanban-column" id="column-1">
-      <h2>A Fazer</h2>
-      <div class="kanban-tasks" id="tasks-column-1">
-        <!-- Tarefas serão carregadas aqui -->
-      </div>
-    </div>
-    
-    <!-- Coluna 2: Em Andamento -->
-    <div class="kanban-column" id="column-2">
-      <h2>Em Andamento</h2>
-      <div class="kanban-tasks" id="tasks-column-2">
-        <!-- Tarefas serão carregadas aqui -->
-      </div>
-    </div>
-    
-    <!-- Coluna 3: Concluído -->
-    <div class="kanban-column" id="column-3">
-      <h2>Concluído</h2>
-      <div class="kanban-tasks" id="tasks-column-3">
-        <!-- Tarefas serão carregadas aqui -->
-      </div>
-    </div>
-  </div>
+  
+
+
+  <div class="container-kanban" id="columnsContainer">
+    <div class="column">
+      <div class="column-header">
+        <div id="header-botoes">
+          <span class="column-title"></span>
+          <button class="edit-column">Editar</button>
+          <button class="delete-column">Excluir</button>
+          <button class="add-tarefa-column">+</button>
+        </div>
+      </div><!--Fim da div column header-->
+         <div class="item" draggable="true">Card 1</div>
+         <div class="item" draggable="true">Card 2</div>
+     </div><!--Fim da div column-->
+  </div> <!--Fim da div container-kanban-->
 
 
 
