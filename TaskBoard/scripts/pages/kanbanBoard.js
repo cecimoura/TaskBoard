@@ -4,7 +4,7 @@ let draggedCard;
 
 // Função para criar uma nova coluna
 function createColumn(title = "") {
-   const column = document.createElement("section");
+    const column = document.createElement("section");
     column.classList.add("column");
 
     const titleInput = document.createElement("input");
@@ -26,25 +26,21 @@ function createColumn(title = "") {
     columnHeader.insertAdjacentHTML("beforeend", `<button class="delete-column">Excluir Board</button>`);
     column.appendChild(columnHeader);
 
-
     column.insertAdjacentHTML("beforeend", `
-      <button class="add-tarefa">Nova tarefa</button>
-      <section class="column-cards"></section>
+        <button class="add-tarefa">Nova tarefa</button>
+        <section class="column-cards"></section>
     `);
 
     const columnCards = column.querySelector(".column-cards");
     const addCardButton = column.querySelector(".add-tarefa");
     const deleteColumnButton = column.querySelector(".delete-column");
 
+    // Remover event listener antes de adicionar novamente
+    deleteColumnButton.removeEventListener("click", deleteColumnHandler);  
+    deleteColumnButton.addEventListener("click", deleteColumnHandler);
+
     addCardButton.addEventListener("click", () => createCard(columnCards));
-    deleteColumnButton.addEventListener("click", () => {
-        if (confirm("Tem certeza de que deseja excluir esta coluna?")) {
-            column.remove();
-        }
-    });
 
-
-    
     titleInput.value = title;
     titleInput.style.display = "none"; // Oculta o input inicialmente
 
@@ -71,6 +67,14 @@ function createColumn(title = "") {
 
     addDragAndDropListeners(columnCards);
     columnsContainer.appendChild(column);
+}
+
+// Função para excluir a coluna
+function deleteColumnHandler(event) {
+    if (confirm("Tem certeza de que deseja excluir esta coluna?")) {
+        const column = event.target.closest('.column'); // Encontra a coluna a partir do botão clicado
+        column.remove();
+    }
 }
 
 // Função para criar um novo cartão
@@ -123,7 +127,6 @@ function createCard(columnCards) {
     textArea.focus();
 }
 
-
 // Funções de arrastar e soltar
 function dragStart(event) {
     draggedCard = event.target.closest(".card-container");
@@ -161,7 +164,6 @@ function addDragAndDropListeners(columnCards) {
     columnCards.addEventListener("drop", drop);
 }
 
-
 // Função para lidar com o clique do botão "Adicionar Coluna"
 function handleAddColumnClick() {
     createColumn();
@@ -180,11 +182,10 @@ function initializeColumns() {
 
         addDragAndDropListeners(columnCards);
         addCardButton.addEventListener("click", () => createCard(columnCards));
-        deleteButton.addEventListener("click", () => {
-            if (confirm("Tem certeza de que deseja excluir esta coluna?")) {
-                column.remove();
-            }
-        });
+
+        // Remover event listener antes de adicionar novamente
+        deleteButton.removeEventListener("click", deleteColumnHandler);
+        deleteButton.addEventListener("click", deleteColumnHandler);
     });
 }
 
