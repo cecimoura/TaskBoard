@@ -1,4 +1,6 @@
-let containerSwitch = document.getElementById('container-switch');
+let containerSwitch = document.getElementById('container-switch'); 
+let cabecalho = document.getElementById('cabecalho');  // Elemento do cabeçalho
+let containerBotoes = document.getElementById('container-botoes');  // Elemento do container de botões
 let userData = JSON.parse(localStorage.getItem('user')); // Recupera as informações do usuário do localStorage
 
 // Função para recuperar o tema do servidor
@@ -13,8 +15,14 @@ async function recuperaTema(userId) {
     // Aplica o tema na interface com base no DefaultThemeId
     if (result.DefaultThemeId === 1) {
       document.body.classList.add('dark');  // Aplica o tema escuro
+      containerSwitch.classList.add('dark'); // Adiciona a classe 'dark' ao switch
+      cabecalho.classList.add('dark'); // Adiciona a classe 'dark' ao cabeçalho
+      containerBotoes.classList.add('dark'); // Adiciona a classe 'dark' ao container de botões
     } else {
       document.body.classList.remove('dark');  // Aplica o tema claro
+      containerSwitch.classList.remove('dark'); // Remove a classe 'dark' do switch
+      cabecalho.classList.remove('dark'); // Remove a classe 'dark' do cabeçalho
+      containerBotoes.classList.remove('dark'); // Remove a classe 'dark' do container de botões
     }
   } catch (error) {
     console.error("Erro ao recuperar tema:", error);
@@ -56,6 +64,9 @@ async function clickTema() {
   containerSwitch.addEventListener('click', async () => {
     // Alterna a classe de tema no body
     document.body.classList.toggle('dark');
+    containerSwitch.classList.toggle('dark'); // Alterna a classe 'dark' no switch
+    cabecalho.classList.toggle('dark'); // Alterna a classe 'dark' no cabeçalho
+    containerBotoes.classList.toggle('dark'); // Alterna a classe 'dark' no container de botões
 
     // Define o novo tema baseado na classe
     const novoTemaId = document.body.classList.contains('dark') ? 1 : 2;
