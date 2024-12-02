@@ -30,7 +30,7 @@ loginForm.addEventListener("submit", async (event) => {
     }
 
     const userData = await response.json();
-    saveToLocalStorage("user", { id: userData.Id, email: userData.Email });
+    saveToLocalStorage("user", { id: userData.Id, email: userData.Email, theme: userData.Theme });
     window.location.href = "/TaskBoard/html/index.html";
   } catch (error) {
     showError("Falha ao se conectar com o servidor. Tente novamente mais tarde");

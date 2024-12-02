@@ -1,3 +1,5 @@
+
+
 // Função para mostrar a saudação com o nome do usuário
 function mostrarBoasVindas() {
   const user = JSON.parse(localStorage.getItem('user')); // Recupera os dados do usuário do localStorage
