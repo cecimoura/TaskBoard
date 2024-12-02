@@ -3,6 +3,14 @@ let cabecalho = document.getElementById('cabecalho');  // Elemento do cabeçalho
 let containerBotoes = document.getElementById('container-botoes');  // Elemento do container de botões
 let userData = JSON.parse(localStorage.getItem('user')); // Recupera as informações do usuário do localStorage
 
+// Função para aplicar o tema escuro nas colunas
+function aplicarTemaNasColunas() {
+  let colunas = document.querySelectorAll('.column');
+  colunas.forEach(coluna => {
+    coluna.classList.toggle('dark', document.body.classList.contains('dark'));
+  });
+}
+
 // Função para recuperar o tema do servidor
 async function recuperaTema(userId) {
   try {
@@ -24,6 +32,9 @@ async function recuperaTema(userId) {
       cabecalho.classList.remove('dark'); // Remove a classe 'dark' do cabeçalho
       containerBotoes.classList.remove('dark'); // Remove a classe 'dark' do container de botões
     }
+
+    // Aplica o tema nas colunas
+    aplicarTemaNasColunas();
   } catch (error) {
     console.error("Erro ao recuperar tema:", error);
   }
@@ -67,6 +78,9 @@ async function clickTema() {
     containerSwitch.classList.toggle('dark'); // Alterna a classe 'dark' no switch
     cabecalho.classList.toggle('dark'); // Alterna a classe 'dark' no cabeçalho
     containerBotoes.classList.toggle('dark'); // Alterna a classe 'dark' no container de botões
+
+    // Aplica o tema nas colunas
+    aplicarTemaNasColunas();
 
     // Define o novo tema baseado na classe
     const novoTemaId = document.body.classList.contains('dark') ? 1 : 2;

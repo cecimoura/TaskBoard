@@ -27,6 +27,12 @@ main {
   outline: rgb(128, 159, 110) 2px solid;
 }
 
+.column.dark{
+  background-color: #3f5a49;
+  outline: rgb(128, 159, 110) 2px solid;
+ 
+}
+
 .column-title {
   color: #867940;
   font-size: 20px;
