@@ -2,10 +2,20 @@ const columnsContainer = document.querySelector(".columns");
 const addColumnButton = document.querySelector("#addColumnButton");
 let draggedCard;
 
+// Função para verificar se o tema está no modo escuro
+function isDarkModeEnabled() {
+    return document.body.classList.contains("dark");
+}
+
 // Função para criar uma nova coluna
 function createColumn(title = "") {
     const column = document.createElement("section");
     column.classList.add("column");
+
+    // Aplica o tema atual à nova coluna
+    if (isDarkModeEnabled()) {
+        column.classList.add("dark");
+    }
 
     const titleInput = document.createElement("input");
     titleInput.type = "text";
@@ -35,8 +45,7 @@ function createColumn(title = "") {
     const addCardButton = column.querySelector(".add-tarefa");
     const deleteColumnButton = column.querySelector(".delete-column");
 
-    // Remover event listener antes de adicionar novamente
-    deleteColumnButton.removeEventListener("click", deleteColumnHandler);  
+    deleteColumnButton.removeEventListener("click", deleteColumnHandler);
     deleteColumnButton.addEventListener("click", deleteColumnHandler);
 
     addCardButton.addEventListener("click", () => createCard(columnCards));
@@ -183,7 +192,6 @@ function initializeColumns() {
         addDragAndDropListeners(columnCards);
         addCardButton.addEventListener("click", () => createCard(columnCards));
 
-        // Remover event listener antes de adicionar novamente
         deleteButton.removeEventListener("click", deleteColumnHandler);
         deleteButton.addEventListener("click", deleteColumnHandler);
     });
