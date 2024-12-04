@@ -23,6 +23,7 @@ main {
   border-radius: 8px;
   padding: 10px;
   min-width: 200px;
+  height: 250px;
   height: fit-content;
   outline: rgb(128, 159, 110) 2px solid;
 }
@@ -105,3 +106,5 @@ main {
 .delete-card-icon:hover {
   color: darkred;
 }
+
+

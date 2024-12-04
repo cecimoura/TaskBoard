@@ -1,11 +1,71 @@
 const columnsContainer = document.querySelector(".columns");
 const addColumnButton = document.querySelector("#addColumnButton");
-let draggedCard;
+let draggedCard = null;
+let originColumn = null; // Variável para armazenar a coluna original
 
 // Função para verificar se o tema está no modo escuro
 function isDarkModeEnabled() {
     return document.body.classList.contains("dark");
 }
+
+// Função para iniciar o arrasto
+const dragStart = (event) => {
+    draggedCard = event.target.closest(".card-container"); // Certifica que o contêiner do card está sendo arrastado
+    originColumn = draggedCard.parentNode; // Armazena a coluna original
+    event.dataTransfer.effectAllowed = "move"; 
+
+    // Clone o cartão para arrastá-lo sem esconder o original
+    const cardClone = draggedCard.cloneNode(true);
+    cardClone.style.opacity = "0.5"; // Torna o clone parcialmente transparente
+    event.dataTransfer.setDragImage(cardClone, 0, 0); // Define o clone como imagem de arrasto
+
+    // Reduz a opacidade do cartão original
+    setTimeout(() => {
+        draggedCard.style.opacity = "0.5"; // Faz o cartão original ficar transparente
+    }, 0);
+};
+
+// Função para permitir o arrasto
+const dragOver = (event) => {
+    event.preventDefault(); // Permite o drop
+};
+
+// Função para processar o drop do card
+const drop = (event) => {
+    event.preventDefault();
+
+    const targetColumnCards = event.target.closest(".column-cards");
+
+    if (targetColumnCards && draggedCard && targetColumnCards !== originColumn) {
+        // Restaura a opacidade do cartão original ANTES de movê-lo
+        draggedCard.style.opacity = "1";
+
+        // Insere o cartão no final da coluna de destino
+        targetColumnCards.insertBefore(draggedCard, null);
+
+        draggedCard = null;
+        originColumn = null; // Limpa a coluna de origem
+    } else if (targetColumnCards && draggedCard && targetColumnCards === originColumn) {
+      // Restaura a opacidade se o cartão for solto na coluna original
+      draggedCard.style.opacity = "1";
+      draggedCard = null;
+      originColumn = null;
+    }
+};
+// Função para restaurar a opacidade após o arrasto
+const dragEnd = () => {
+    if (draggedCard) {
+        draggedCard.style.opacity = "1";
+        draggedCard = null;
+        originColumn = null; // Limpa a coluna de origem se o arrasto for cancelado
+    }
+};
+
+// Adicionando os eventos aos cards
+const addDragAndDropListeners = (columnCards) => {
+    columnCards.addEventListener("dragover", dragOver);  // Adiciona o evento de "dragover"
+    columnCards.addEventListener("drop", drop); // Adiciona o evento de "drop"
+};
 
 // Função para criar uma nova coluna
 function createColumn(title = "") {
@@ -38,16 +98,14 @@ function createColumn(title = "") {
 
     column.insertAdjacentHTML("beforeend", `
         <button class="add-tarefa">Nova tarefa</button>
-        <section class="column-cards"></section>
+        <section class="column-cards" ondrop="drop(event)" ondragover="dragOver(event)"></section>
     `);
 
     const columnCards = column.querySelector(".column-cards");
     const addCardButton = column.querySelector(".add-tarefa");
     const deleteColumnButton = column.querySelector(".delete-column");
 
-    deleteColumnButton.removeEventListener("click", deleteColumnHandler);
     deleteColumnButton.addEventListener("click", deleteColumnHandler);
-
     addCardButton.addEventListener("click", () => createCard(columnCards));
 
     titleInput.value = title;
@@ -134,43 +192,6 @@ function createCard(columnCards) {
     cardContainer.append(textArea);
     columnCards.append(cardContainer);
     textArea.focus();
-}
-
-// Funções de arrastar e soltar
-function dragStart(event) {
-    draggedCard = event.target.closest(".card-container");
-    event.dataTransfer.effectAllowed = "move";
-}
-
-function dragOver(event) {
-    event.preventDefault();
-}
-
-function dragEnter(event) {
-    const target = event.target;
-    if (target.classList.contains("column-cards")) {
-        target.classList.add("column--highlight");
-    }
-}
-
-function dragLeave(event) {
-    event.target.classList.remove("column--highlight");
-}
-
-function drop(event) {
-    const target = event.target;
-    if (target.classList.contains("column-cards") && draggedCard && draggedCard.parentNode !== target) {
-        target.classList.remove("column--highlight");
-        target.appendChild(draggedCard);
-        draggedCard = null;
-    }
-}
-
-function addDragAndDropListeners(columnCards) {
-    columnCards.addEventListener("dragover", dragOver);
-    columnCards.addEventListener("dragenter", dragEnter);
-    columnCards.addEventListener("dragleave", dragLeave);
-    columnCards.addEventListener("drop", drop);
 }
 
 // Função para lidar com o clique do botão "Adicionar Coluna"
