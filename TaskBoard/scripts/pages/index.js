@@ -19,14 +19,5 @@ function mostrarBoasVindas() {
 // Chama a função para exibir as boas-vindas quando a página carregar
 document.addEventListener('DOMContentLoaded', mostrarBoasVindas);
 
-// Função de logout (para remover os dados do localStorage)
-function logout() {
-  localStorage.removeItem('user'); // Remove os dados do usuário
-  window.location.href = '/login'; // Redireciona para a página de login
-}
-
-// Exporta a função logout, caso precise usá-la em algum outro lugar
-export { logout };
-
 
   

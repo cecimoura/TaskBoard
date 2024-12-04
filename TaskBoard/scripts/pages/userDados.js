@@ -5,7 +5,7 @@ function recuperarDados() {
       const user = JSON.parse(userData);
       console.log(user);
   
-      const userNameElement = document.getElementById("nomeFulana");
+      const userNameElement = document.getElementById("nomeUser");
   
       const primeiroNome = user.nome.split(" ")[0];
       userNameElement.innerHTML = `Olá, ${primeiroNome}!`;
