@@ -2,6 +2,7 @@ const columnsContainer = document.querySelector(".columns");
 const addColumnButton = document.querySelector("#addColumnButton");
 let draggedCard = null;
 let originColumn = null; // Variável para armazenar a coluna original
+let currentBoardId = null; // Variável para armazenar o ID do board atual
 
 // Função para verificar se o tema está no modo escuro
 function isDarkModeEnabled() {
@@ -12,12 +13,7 @@ function isDarkModeEnabled() {
 const dragStart = (event) => {
     draggedCard = event.target.closest(".card-container"); // Certifica que o contêiner do card está sendo arrastado
     originColumn = draggedCard.parentNode; // Armazena a coluna original
-    event.dataTransfer.effectAllowed = "move"; 
-
-    // Clone o cartão para arrastá-lo sem esconder o original
-    const cardClone = draggedCard.cloneNode(true);
-    cardClone.style.opacity = "0.5"; // Torna o clone parcialmente transparente
-    event.dataTransfer.setDragImage(cardClone, 0, 0); // Define o clone como imagem de arrasto
+    event.dataTransfer.effectAllowed = "move";
 
     // Reduz a opacidade do cartão original
     setTimeout(() => {
@@ -41,17 +37,18 @@ const drop = (event) => {
         draggedCard.style.opacity = "1";
 
         // Insere o cartão no final da coluna de destino
-        targetColumnCards.insertBefore(draggedCard, null);
+        targetColumnCards.appendChild(draggedCard);
 
         draggedCard = null;
         originColumn = null; // Limpa a coluna de origem
     } else if (targetColumnCards && draggedCard && targetColumnCards === originColumn) {
-      // Restaura a opacidade se o cartão for solto na coluna original
-      draggedCard.style.opacity = "1";
-      draggedCard = null;
-      originColumn = null;
+        // Restaura a opacidade se o cartão for solto na coluna original
+        draggedCard.style.opacity = "1";
+        draggedCard = null;
+        originColumn = null;
     }
 };
+
 // Função para restaurar a opacidade após o arrasto
 const dragEnd = () => {
     if (draggedCard) {
@@ -83,63 +80,51 @@ function createColumn(title = "") {
     titleInput.value = title;
     titleInput.placeholder = "Sem nome";
 
-    titleInput.addEventListener("blur", () => {
-        titleInput.value = titleInput.value.trim();
-        if (!titleInput.value) {
-            titleInput.placeholder = "Sem nome";
-        }
-    });
-
     const columnHeader = document.createElement("div");
     columnHeader.className = "column-header";
-    columnHeader.appendChild(titleInput);
-    columnHeader.insertAdjacentHTML("beforeend", `<button class="delete-column">Excluir Board</button>`);
-    column.appendChild(columnHeader);
 
-    column.insertAdjacentHTML("beforeend", `
-        <button class="add-tarefa">Nova tarefa</button>
-        <section class="column-cards" ondrop="drop(event)" ondragover="dragOver(event)"></section>
-    `);
-
-    const columnCards = column.querySelector(".column-cards");
-    const addCardButton = column.querySelector(".add-tarefa");
-    const deleteColumnButton = column.querySelector(".delete-column");
-
-    deleteColumnButton.addEventListener("click", deleteColumnHandler);
-    addCardButton.addEventListener("click", () => createCard(columnCards));
-
-    titleInput.value = title;
-    titleInput.style.display = "none"; // Oculta o input inicialmente
-
-    const titleSpan = document.createElement("span"); // Cria um span para exibir o título
-    titleSpan.className = "column-title"; // Usa a classe original para o título
-    titleSpan.textContent = title || "Sem nome"; // Exibe o título ou "Sem nome"
-    titleSpan.addEventListener("click", () => { // Torna o título clicável
-        titleInput.style.display = "block"; // Mostra o input
-        titleSpan.style.display = "none"; // Oculta o span
-        titleInput.focus(); // Foca no input
-        titleInput.select();
+    const titleSpan = document.createElement("span");
+    titleSpan.className = "column-title";
+    titleSpan.textContent = title || "Sem nome";
+    titleSpan.addEventListener("click", () => {
+        titleInput.style.display = "block";
+        titleSpan.style.display = "none";
+        titleInput.focus();
     });
 
     titleInput.addEventListener("blur", () => {
         const newTitle = titleInput.value.trim();
-        titleInput.value = newTitle;
         titleSpan.textContent = newTitle || "Sem nome";
-        titleInput.style.display = "none"; // Oculta o input
-        titleSpan.style.display = "inline-block"; // Mostra o span
+        titleInput.style.display = "none";
+        titleSpan.style.display = "inline-block";
     });
 
-    columnHeader.insertBefore(titleSpan, columnHeader.firstChild); // Insere o span no header
-    columnHeader.insertBefore(titleInput, titleSpan); // Insere o input antes do span
+    columnHeader.append(titleSpan, titleInput);
+
+    const deleteColumnButton = document.createElement("button");
+    deleteColumnButton.className = "delete-column";
+    deleteColumnButton.textContent = "Excluir Board";
+    deleteColumnButton.addEventListener("click", deleteColumnHandler);
+
+    const addCardButton = document.createElement("button");
+    addCardButton.className = "add-tarefa";
+    addCardButton.textContent = "Nova tarefa";
+
+    const columnCards = document.createElement("section");
+    columnCards.className = "column-cards";
 
     addDragAndDropListeners(columnCards);
+    addCardButton.addEventListener("click", () => createCard(columnCards));
+
+    columnHeader.appendChild(deleteColumnButton);
+    column.append(columnHeader, addCardButton, columnCards);
     columnsContainer.appendChild(column);
 }
 
 // Função para excluir a coluna
 function deleteColumnHandler(event) {
     if (confirm("Tem certeza de que deseja excluir esta coluna?")) {
-        const column = event.target.closest('.column'); // Encontra a coluna a partir do botão clicado
+        const column = event.target.closest('.column');
         column.remove();
     }
 }
@@ -165,7 +150,6 @@ function createCard(columnCards) {
             const editIcon = document.createElement("i");
             editIcon.className = "edit-card-icon";
             editIcon.textContent = "✏️";
-            editIcon.title = "Editar cartão";
             editIcon.addEventListener("click", () => {
                 cardText.contentEditable = true;
                 cardText.focus();
@@ -177,21 +161,49 @@ function createCard(columnCards) {
             const deleteIcon = document.createElement("i");
             deleteIcon.className = "delete-card-icon";
             deleteIcon.textContent = "🗑️";
-            deleteIcon.title = "Excluir cartão";
-            deleteIcon.onclick = () => cardContainer.remove();
+            deleteIcon.addEventListener("click", () => cardContainer.remove());
 
-            cardContainer.addEventListener("dragstart", dragStart);
             cardContainer.append(cardText, editIcon, deleteIcon);
-            columnCards.append(cardContainer);
+            cardContainer.addEventListener("dragstart", dragStart);
+            cardContainer.addEventListener("dragend", dragEnd);
+            columnCards.appendChild(cardContainer);
         }
-        textArea.remove();
+        textArea.parentElement.remove(); // Remove o contêiner do textarea se vazio
     });
 
     const cardContainer = document.createElement("div");
     cardContainer.className = "card-container";
-    cardContainer.append(textArea);
-    columnCards.append(cardContainer);
+    cardContainer.appendChild(textArea);
+    columnCards.appendChild(cardContainer);
     textArea.focus();
+}
+
+// Função para carregar as colunas de um board específico
+async function loadColumnsForBoard(boardId) {
+    try {
+        const response = await fetch(
+            `https://personal-ga2xwx9j.outsystemscloud.com/TaskBoard_CS/rest/TaskBoard/ColumnByBoardId?BoardId=${boardId}`
+        );
+
+        if (!response.ok) {
+            throw new Error(`Erro na API: ${response.statusText}`);
+        }
+
+        const columnsData = await response.json();
+
+        columnsContainer.innerHTML = ""; // Limpa colunas existentes
+        columnsData.forEach(column => {
+            createColumn(column.Name);
+            const columnCards = columnsContainer.lastElementChild.querySelector(".column-cards");
+            // Chamar a função loadCardsForColumn aqui, se implementada
+        });
+
+        currentBoardId = boardId;
+
+    } catch (error) {
+        console.error("Erro ao carregar as colunas:", error);
+        columnsContainer.innerHTML = "<p>Erro ao carregar as colunas.</p>";
+    }
 }
 
 // Função para lidar com o clique do botão "Adicionar Coluna"
@@ -212,16 +224,11 @@ function initializeColumns() {
 
         addDragAndDropListeners(columnCards);
         addCardButton.addEventListener("click", () => createCard(columnCards));
-
-        deleteButton.removeEventListener("click", deleteColumnHandler);
         deleteButton.addEventListener("click", deleteColumnHandler);
     });
 }
 
-// Remove colunas existentes e cria as iniciais
-const existingColumns = document.querySelectorAll('.column');
-existingColumns.forEach(column => column.remove());
-
+// Criar colunas iniciais
 createColumn("To Do");
 createColumn("Doing");
 createColumn("Done");
