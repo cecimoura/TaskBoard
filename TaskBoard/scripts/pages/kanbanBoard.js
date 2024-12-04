@@ -74,52 +74,61 @@ function createColumn(title = "") {
         column.classList.add("dark");
     }
 
+    const columnHeader = document.createElement("div");
+    columnHeader.className = "column-header";
+
+    // Criação do input e do span para o título
     const titleInput = document.createElement("input");
     titleInput.type = "text";
     titleInput.className = "column-title-input";
     titleInput.value = title;
     titleInput.placeholder = "Sem nome";
-
-    const columnHeader = document.createElement("div");
-    columnHeader.className = "column-header";
+    titleInput.style.display = "none"; // Inicialmente oculto
 
     const titleSpan = document.createElement("span");
     titleSpan.className = "column-title";
     titleSpan.textContent = title || "Sem nome";
+
+    // Torna o título editável ao clicar
     titleSpan.addEventListener("click", () => {
-        titleInput.style.display = "block";
-        titleSpan.style.display = "none";
+        titleSpan.style.display = "none"; // Oculta o span
+        titleInput.style.display = "block"; // Mostra o input
         titleInput.focus();
     });
 
+    // Atualiza o título e alterna para o modo visual ao sair do input
     titleInput.addEventListener("blur", () => {
         const newTitle = titleInput.value.trim();
-        titleSpan.textContent = newTitle || "Sem nome";
-        titleInput.style.display = "none";
-        titleSpan.style.display = "inline-block";
+        titleSpan.textContent = newTitle || "Sem nome"; // Usa "Sem nome" se estiver vazio
+        titleInput.style.display = "none"; // Oculta o input
+        titleSpan.style.display = "inline-block"; // Mostra o span
     });
 
-    columnHeader.append(titleSpan, titleInput);
-
+    // Botão para excluir a coluna
     const deleteColumnButton = document.createElement("button");
     deleteColumnButton.className = "delete-column";
     deleteColumnButton.textContent = "Excluir Board";
     deleteColumnButton.addEventListener("click", deleteColumnHandler);
 
+    // Botão para adicionar tarefa
     const addCardButton = document.createElement("button");
     addCardButton.className = "add-tarefa";
     addCardButton.textContent = "Nova tarefa";
 
+    // Container para os cartões
     const columnCards = document.createElement("section");
     columnCards.className = "column-cards";
 
+    // Eventos de drag and drop
     addDragAndDropListeners(columnCards);
     addCardButton.addEventListener("click", () => createCard(columnCards));
 
-    columnHeader.appendChild(deleteColumnButton);
+    // Monta o cabeçalho e a coluna
+    columnHeader.append(titleSpan, titleInput, deleteColumnButton);
     column.append(columnHeader, addCardButton, columnCards);
     columnsContainer.appendChild(column);
 }
+
 
 // Função para excluir a coluna
 function deleteColumnHandler(event) {
@@ -228,9 +237,6 @@ function initializeColumns() {
     });
 }
 
-// Criar colunas iniciais
-createColumn("To Do");
-createColumn("Doing");
-createColumn("Done");
+
 
 initializeColumns();
