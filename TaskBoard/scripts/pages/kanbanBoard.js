@@ -237,6 +237,77 @@ function initializeColumns() {
     });
 }
 
+async function loadColumnsForBoard(boardId) {
+    try {
+        console.log(`Carregando colunas para o board com ID: ${boardId}`);
+
+        // Fazer a requisição à API para buscar colunas do board
+        const response = await fetch(
+            `https://personal-ga2xwx9j.outsystemscloud.com/TaskBoard_CS/rest/TaskBoard/ColumnByBoardId?BoardId=${boardId}`
+        );
+
+        if (!response.ok) {
+            throw new Error(`Erro na API: ${response.status} - ${response.statusText}`);
+        }
+
+        const columnsData = await response.json();
+        console.log("Dados das colunas recebidos:", columnsData);
+
+        // Limpar colunas existentes
+        columnsContainer.innerHTML = "";
+
+        // Criar colunas para o board selecionado
+        for (const column of columnsData) {
+            createColumn(column.Name); // Criar a coluna com base no nome
+
+            const columnCards = columnsContainer.lastElementChild.querySelector(".column-cards");
+
+            // Chamar a função para carregar as tarefas da coluna, se a API permitir
+            await loadTasksForColumn(column.Id, columnCards);
+        }
+
+        currentBoardId = boardId; // Atualizar o ID do board atual
+        console.log(`Colunas carregadas para o board ${boardId}`);
+    } catch (error) {
+        console.error("Erro ao carregar as colunas:", error);
+        columnsContainer.innerHTML = "<p>Erro ao carregar as colunas.</p>";
+    }
+}
+
+// Função para carregar tarefas de uma coluna específica
+async function loadTasksForColumn(columnId, columnCards) {
+    try {
+        const response = await fetch(
+            `https://personal-ga2xwx9j.outsystemscloud.com/TaskBoard_CS/rest/TaskBoard/TasksByColumnId?ColumnId=${columnId}`
+        );
+
+        if (!response.ok) {
+            throw new Error(`Erro ao carregar tarefas: ${response.status} - ${response.statusText}`);
+        }
+
+        const tasksData = await response.json();
+        console.log(`Tarefas da coluna ${columnId}:`, tasksData);
+
+        // Criar tarefas na coluna
+        tasksData.forEach(task => {
+            const cardContainer = document.createElement("div");
+            cardContainer.className = "card-container";
+            cardContainer.draggable = true;
+
+            const cardText = document.createElement("p");
+            cardText.className = "card-text";
+            cardText.textContent = task.Title || "Sem título";
+
+            cardContainer.appendChild(cardText);
+            cardContainer.addEventListener("dragstart", dragStart);
+            cardContainer.addEventListener("dragend", dragEnd);
+
+            columnCards.appendChild(cardContainer);
+        });
+    } catch (error) {
+        console.error(`Erro ao carregar tarefas da coluna ${columnId}:`, error);
+    }
+}
 
 
 initializeColumns();

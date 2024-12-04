@@ -158,10 +158,6 @@ background-color: #0e3d42;
   background-color:#c9d1c3;
 }
 
-.dropdown-item {
-  color: #455763;
-}
-
 .dropdown:hover .dropdown-content {
  display: none;
 }
