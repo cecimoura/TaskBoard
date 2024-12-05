@@ -215,10 +215,7 @@ async function loadColumnsForBoard(boardId) {
     }
 }
 
-// Função para lidar com o clique do botão "Adicionar Coluna"
-function handleAddColumnClick() {
-    createColumn();
-}
+
 
 // Event listener para o botão "Adicionar Coluna"
 addColumnButton.addEventListener("click", handleAddColumnClick);

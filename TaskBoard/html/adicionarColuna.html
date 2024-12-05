@@ -4,28 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Criar Coluna</title>
+    <link rel="stylesheet" href="/TaskBoard/styles/adicionarColuna.css">
 </head>
 <body>
-   
-    <div class= “form-container”>
-    <h2>Criar Coluna</h2>
+    <div class="form-container">
+        <h2>Criar Coluna</h2>
         <dev id="createColumnForm">
-             <label for="boardId">Board ID</label>
-             <input type="number" id="boardId" name="boardId" value="1" required="">
-        
-             <label for="name">Nome da Coluna</label>
-             <input type="text" id="name" name="name" placeholder="Nome da coluna" required="">
-        
-             <label for="position">Posição</label>
-             <input type="number" id="position" name="position" value="0" required="">
-        
-             <label for="isActive">Ativo</label>
-             <input type="checkbox" id="isActive" name="isActive" checked="">
-        
-             <button type="submit" id="submit">Criar Coluna</button>
+            <label for="boardId">Board ID</label>
+            <input type="number" id="boardId" name="boardId" value="1" required="">
+
+            <label for="name">Nome da Coluna</label>
+            <input type="text" id="name" name="name" placeholder="Nome da coluna" required="">
+
+            <label for="position">Posição</label>
+            <input type="number" id="position" name="position" value="0" required="">
+
+            <label for="isActive">Ativo</label>
+            <input type="checkbox" id="isActive" name="isActive" checked="">
+
+            <button type="submit" id="submit">Criar Coluna</button>
         </dev>
+        
+        <div class="message" id="responseMessage"></div>
     </div>
       
-        
+
+
+
+
+
+
+
+
+
+
+<script type="module" src="/TaskBoard/scripts/pages/adicionarColuna.js"></script>
 </body>
 </html>
