@@ -36,7 +36,7 @@ main {
 
 .column-title {
   color: #867940;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: bold;
   margin: 0;
   padding: 10px 0;
@@ -96,15 +96,5 @@ main {
   background-color: #e63939;
 }
 
-.delete-card-icon {
-  font-size: 18px;
-  color: red;
-  cursor: pointer;
-  margin-left: 10px;
-}
-
-.delete-card-icon:hover {
-  color: darkred;
-}
 
 
