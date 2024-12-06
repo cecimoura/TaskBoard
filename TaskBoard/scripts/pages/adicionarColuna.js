@@ -1,5 +1,5 @@
-// Suponhamos que você tenha o boardId armazenado de alguma forma, como em uma variável global ou já definida
-let currentBoardId = null; // O boardId que será utilizado para associar a coluna ao board correto
+
+
 
 const API_ENDPOINT = "https://personal-ga2xwx9j.outsystemscloud.com/TaskBoard_CS/rest/TaskBoard/Column";
 
@@ -9,6 +9,17 @@ const addColumnButton = document.getElementById("addColumnButton");
 const closeButton = document.getElementById("closeButton");
 const createColumnForm = document.getElementById("createColumnForm");
 const columnNameInput = document.getElementById("columnName");
+
+// Obtém o parâmetro "id" da URL e atribui ao currentBoardId
+const urlParams = new URLSearchParams(window.location.search);
+const currentBoardId = urlParams.get('id');
+
+document.querySelectorAll('.board-item').forEach(item => {
+    item.addEventListener('click', (event) => {
+        currentBoardId = event.target.dataset.boardId; // ou outro método para obter o ID
+        console.log(`Board selecionado: ${currentBoardId}`);
+    });
+});
 
 // Função para abrir o modal
 addColumnButton.addEventListener("click", () => {
@@ -48,6 +59,7 @@ createColumnForm.addEventListener("submit", async (event) => {
 
             if (!response.ok) {
                 throw new Error(`Erro ao criar a coluna: ${response.statusText}`);
+                
             }
 
             console.log(`Coluna "${columnName}" criada com sucesso!`);
@@ -58,6 +70,8 @@ createColumnForm.addEventListener("submit", async (event) => {
 
         } catch (error) {
             console.error("Erro ao criar coluna:", error);
+            // Alerta de erro para o usuário
+            alert("Não foi possível cadastrar a coluna. Por favor, tente novamente mais tarde.");
         }
     } else {
         console.error("O nome da coluna não pode estar vazio ou o boardId não está definido!");
