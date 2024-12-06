@@ -1,4 +1,6 @@
-//import { API_BASE_URL } from "./config/apiConfig"; // Use um caminho relativo, se necessário.  Ajustar conforme sua estrutura de pastas.
+// Suponhamos que você tenha o boardId armazenado de alguma forma, como em uma variável global ou já definida
+let currentBoardId = null; // O boardId que será utilizado para associar a coluna ao board correto
+
 const API_ENDPOINT = "https://personal-ga2xwx9j.outsystemscloud.com/TaskBoard_CS/rest/TaskBoard/Column";
 
 // Obtendo elementos
@@ -26,19 +28,38 @@ window.addEventListener("click", (event) => {
 });
 
 // Função para adicionar a coluna (lógica do formulário)
-createColumnForm.addEventListener("submit", (event) => {
+createColumnForm.addEventListener("submit", async (event) => {
     event.preventDefault();
     const columnName = columnNameInput.value.trim();
 
-    if (columnName) {
-        console.log(`Coluna "${columnName}" criada com sucesso!`);
-        // Aqui você pode adicionar a lógica para salvar ou mostrar a coluna criada
+    if (columnName && currentBoardId) {
+        try {
+            // Criação da coluna, associando-a ao board pelo boardId
+            const response = await fetch(`${API_ENDPOINT}?BoardId=${currentBoardId}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    Name: columnName,
+                    BoardId: currentBoardId, // Passando o boardId
+                }),
+            });
 
-        // Fechar o modal após a submissão
-        modal.style.display = "none";
+            if (!response.ok) {
+                throw new Error(`Erro ao criar a coluna: ${response.statusText}`);
+            }
+
+            console.log(`Coluna "${columnName}" criada com sucesso!`);
+            // Aqui você pode adicionar a lógica para atualizar a interface, como adicionar a nova coluna na página.
+
+            // Fechar o modal após a submissão
+            modal.style.display = "none";
+
+        } catch (error) {
+            console.error("Erro ao criar coluna:", error);
+        }
     } else {
-        alert("O nome da coluna não pode estar vazio!");
+        console.error("O nome da coluna não pode estar vazio ou o boardId não está definido!");
     }
 });
-
-

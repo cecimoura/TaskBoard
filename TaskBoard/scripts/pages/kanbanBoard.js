@@ -218,7 +218,7 @@ async function loadColumnsForBoard(boardId) {
 
 
 // Event listener para o botão "Adicionar Coluna"
-addColumnButton.addEventListener("click", handleAddColumnClick);
+addColumnButton.addEventListener("click", () => createColumn());
 
 // Inicialização das colunas
 function initializeColumns() {
