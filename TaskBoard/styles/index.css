@@ -331,7 +331,7 @@ input[type="text"] {
   border: 1px solid #ccc;
 }
 
-button {
+#submitColumnButton {
   padding: 10px;
   background-color: #4CAF50;
   color: white;
@@ -340,7 +340,7 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+#submitColumnButton:hover {
   background-color: #45a049;
 }
 
