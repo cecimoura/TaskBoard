@@ -28,7 +28,20 @@
         </ul>
       </div><!--Fim da div dropdown-->
       
-      <button id="addColumnButton" onclick="redirectToAddColumnPage()">+ Adicionar Coluna</button>
+    <button id="addColumnButton">+ Adicionar Coluna</button>
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+          <span id="closeButton" class="close">&times;</span>
+          <h2>Criar Nova Coluna</h2>
+          <form id="createColumnForm">
+              <label for="columnName">Nome da Coluna</label>
+              <input type="text" id="columnName" name="columnName" placeholder="Nome da coluna" required>
+              
+              <button type="submit" id="submitColumnButton">Adicionar Coluna</button>
+          </form>
+      </div>
+  </div>
       
       <div class="container-switch" id="container-switch">
         <div class="indicador"></div>
