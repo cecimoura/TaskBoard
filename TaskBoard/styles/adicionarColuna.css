@@ -1,23 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Kode+Mono:wght@500&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
-
-label{
-    color: white;
-}
-
-
-
-h2{
-    color: rgb(10, 40, 11);
-}
 
 body {
-    font-family: 'Kode Mono';
-    background-color: #97a079;
-    padding: 30px;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding: 20px;
 }
 
 .form-container {
-    background-color: rgb(106, 139, 86);
+    background-color: white;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -31,11 +20,11 @@ body {
 
 .form-container label {
     display: block;
-    margin: 10px 5px;
+    margin: 10px 0 5px;
 }
 
 .form-container input, .form-container button {
-    width: 95%;
+    width: 100%;
     padding: 10px;
     margin-bottom: 15px;
     border-radius: 5px;
@@ -43,7 +32,7 @@ body {
 }
 
 .form-container button {
-    background-color: #273b1f;
+    background-color: #007bff;
     color: white;
     cursor: pointer;
     font-size: 16px;
@@ -51,7 +40,7 @@ body {
 }
 
 .form-container button:hover {
-    background-color: #1f2d1a;
+    background-color: #0056b3;
 }
 
 .form-container button:disabled {
