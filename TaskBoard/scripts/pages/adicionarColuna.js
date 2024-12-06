@@ -1,54 +1,62 @@
-import { API_BASE_URL } from "./config/apiConfig.js";
+//import { API_BASE_URL } from "./config/apiConfig"; // Use um caminho relativo, se necessário.  Ajustar conforme sua estrutura de pastas.
+const API_ENDPOINT = "https://personal-ga2xwx9j.outsystemscloud.com/TaskBoard_CS/rest/TaskBoard/Column";
 
 
+// Verifica se os elementos existem antes de adicionar o listener
+const createColumnForm = document.getElementById('createColumnForm');
+const responseMessage = document.getElementById('responseMessage');
 
-function addColumn(columnData) {
-    
-        // Pega os valores dos campos do formulário
-        const name = document.getElementById('name').value;
-        const position = document.getElementById('position').value;
-        const isActive = document.getElementById('isActive').checked;
-    
-        const columnData = {
-            Name: name,
-            Position: position,
-            IsActive: isActive
-        };
-    
-        // Chama a função para enviar os dados para a API
-        const endpoint = `${API_BASE_URL}/Column`;
-    
-        fetch(endpoint, {
+if (createColumnForm && responseMessage) {
+    createColumnForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        addColumn();
+    });
+} else {
+    console.error("Elemento 'createColumnForm' ou 'responseMessage' não encontrado no DOM.");
+}
+
+
+function showResponseMessage(message, isSuccess) {
+    responseMessage.textContent = message;
+    responseMessage.classList.toggle('success', isSuccess);
+    responseMessage.classList.toggle('error', !isSuccess);
+}
+
+
+function addColumn() {
+    const name = document.getElementById('name').value;
+    const columnData = { Name: name };
+    createColumn(columnData);
+}
+
+
+async function createColumn(columnData) {
+    console.log('Enviando dados para a API:', columnData);
+
+    try {
+        const response = await fetch(API_ENDPOINT, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(columnData),
-        })
-        .then((response) => {
-            if (!response.ok) {
-                return response.json().then((errorData) => {
-                    throw errorData;
-                });
-            }
-            return response.json();
-        })
-        .then((data) => {
-            console.log('Coluna criada com sucesso:', data);
-            document.getElementById('responseMessage').textContent = 'Coluna criada com sucesso!';
-            document.getElementById('responseMessage').classList.remove('error');
-            document.getElementById('responseMessage').classList.add('success');
-        })
-        .catch((errorData) => {
-            console.error('Erro ao criar coluna:', errorData);
-            // Exibir a mensagem de erro
-            if (errorData.Errors && errorData.Errors.length > 0) {
-                document.getElementById('responseMessage').textContent = errorData.Errors.join(', ');
-            } else {
-                document.getElementById('responseMessage').textContent = 'Erro ao criar coluna.';
-            }
-            document.getElementById('responseMessage').classList.remove('success');
-            document.getElementById('responseMessage').classList.add('error');
         });
 
+        console.log('Resposta da API:', response);
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            // Tenta extrair uma mensagem de erro mais específica
+            const errorMessage = errorData.Errors && errorData.Errors.length > 0 ? errorData.Errors.join(', ') :  errorData.Message || 'Erro na requisição à API.';
+            throw new Error(errorMessage); // Lança um erro com a mensagem específica
+        }
+
+        const data = await response.json();
+        console.log('Coluna criada com sucesso:', data);
+        showResponseMessage('Coluna criada com sucesso!', true);
+
+    } catch (error) {  // Captura o erro lançado acima
+        console.error('Erro ao criar coluna:', error);
+        showResponseMessage(error.message, false); // Exibe a mensagem de erro específica
     }
+}
+
+
