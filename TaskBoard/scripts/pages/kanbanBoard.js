@@ -1,68 +1,15 @@
+
+
 const columnsContainer = document.querySelector(".columns");
 const addColumnButton = document.querySelector("#addColumnButton");
-let draggedCard = null;
-let originColumn = null; // Variável para armazenar a coluna original
-let currentBoardId = null; // Variável para armazenar o ID do board atual
+
 
 // Função para verificar se o tema está no modo escuro
 function isDarkModeEnabled() {
     return document.body.classList.contains("dark");
 }
 
-// Função para iniciar o arrasto
-const dragStart = (event) => {
-    draggedCard = event.target.closest(".card-container"); // Certifica que o contêiner do card está sendo arrastado
-    originColumn = draggedCard.parentNode; // Armazena a coluna original
-    event.dataTransfer.effectAllowed = "move";
 
-    // Reduz a opacidade do cartão original
-    setTimeout(() => {
-        draggedCard.style.opacity = "0.5"; // Faz o cartão original ficar transparente
-    }, 0);
-};
-
-// Função para permitir o arrasto
-const dragOver = (event) => {
-    event.preventDefault(); // Permite o drop
-};
-
-// Função para processar o drop do card
-const drop = (event) => {
-    event.preventDefault();
-
-    const targetColumnCards = event.target.closest(".column-cards");
-
-    if (targetColumnCards && draggedCard && targetColumnCards !== originColumn) {
-        // Restaura a opacidade do cartão original ANTES de movê-lo
-        draggedCard.style.opacity = "1";
-
-        // Insere o cartão no final da coluna de destino
-        targetColumnCards.appendChild(draggedCard);
-
-        draggedCard = null;
-        originColumn = null; // Limpa a coluna de origem
-    } else if (targetColumnCards && draggedCard && targetColumnCards === originColumn) {
-        // Restaura a opacidade se o cartão for solto na coluna original
-        draggedCard.style.opacity = "1";
-        draggedCard = null;
-        originColumn = null;
-    }
-};
-
-// Função para restaurar a opacidade após o arrasto
-const dragEnd = () => {
-    if (draggedCard) {
-        draggedCard.style.opacity = "1";
-        draggedCard = null;
-        originColumn = null; // Limpa a coluna de origem se o arrasto for cancelado
-    }
-};
-
-// Adicionando os eventos aos cards
-const addDragAndDropListeners = (columnCards) => {
-    columnCards.addEventListener("dragover", dragOver);  // Adiciona o evento de "dragover"
-    columnCards.addEventListener("drop", drop); // Adiciona o evento de "drop"
-};
 
 // Função para criar uma nova coluna
 function createColumn(title = "") {
@@ -214,7 +161,6 @@ async function loadColumnsForBoard(boardId) {
         columnsContainer.innerHTML = "<p>Erro ao carregar as colunas.</p>";
     }
 }
-
 
 
 // Event listener para o botão "Adicionar Coluna"
