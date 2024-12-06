@@ -7,3 +7,9 @@ export const getFromLocalStorage = (key) => {
   const value = localStorage.getItem(key);
   return value ? JSON.parse(value) : null;
 };
+
+
+export const readFromLocalStorage = (key) => {
+  const data = localStorage.getItem(key);
+  return data ? JSON.parse(data) : null;
+}
