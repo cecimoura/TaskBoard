@@ -10,7 +10,7 @@ loginForm.addEventListener("submit", async (event) => {
 
   const email = emailInput.value.trim();
   if (!email) {
-    showError("Por favor informe um email válido.");
+    showError("Por favor insira um email válido.");
     return;
   }
 
