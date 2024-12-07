@@ -107,7 +107,7 @@ function createColumn(title = "") {
     // Botão para excluir a coluna
     const deleteColumnButton = document.createElement("button");
     deleteColumnButton.className = "delete-column";
-    deleteColumnButton.textContent = "Excluir Board";
+    deleteColumnButton.textContent = "Excluir";
     deleteColumnButton.addEventListener("click", deleteColumnHandler);
 
     // Botão para adicionar tarefa

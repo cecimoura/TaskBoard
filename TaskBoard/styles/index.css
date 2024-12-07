@@ -333,7 +333,7 @@ input[type="text"] {
 
 #submitColumnButton {
   padding: 10px;
-  background-color: #4CAF50;
+  background-color: #769766;
   color: white;
   border: none;
   border-radius: 4px;
@@ -341,10 +341,25 @@ input[type="text"] {
 }
 
 #submitColumnButton:hover {
-  background-color: #45a049;
+  background-color: #5b794d;
 }
 
+#addColumnButton {
+  padding: 10px 20px;
+  background-color: #769766;
+  color: white;
+  border: none;
+  font-family: 'Kode Mono';
+  border-radius: 5px;
+  cursor: pointer;
+  align-self: center;
+  position: relative;
+  top: 10%;
+}
 
+#addColumnButton:hover {
+  background-color: #c9d1c3;
+}
 
 
 

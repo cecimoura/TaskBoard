@@ -57,9 +57,12 @@ createColumnForm.addEventListener("submit", async (event) => {
                 }),
             });
 
+            // Verifica se a resposta foi bem-sucedida
             if (!response.ok) {
-                throw new Error(`Erro ao criar a coluna: ${response.statusText}`);
-                
+                // Obtém mensagem de erro detalhada do servidor, se disponível
+                const errorData = await response.json().catch(() => null);
+                const errorMessage = errorData?.message || response.statusText || "Erro desconhecido";
+                throw new Error(`Erro ao criar a coluna: ${errorMessage}`);
             }
 
             console.log(`Coluna "${columnName}" criada com sucesso!`);
@@ -70,10 +73,9 @@ createColumnForm.addEventListener("submit", async (event) => {
 
         } catch (error) {
             console.error("Erro ao criar coluna:", error);
-            // Alerta de erro para o usuário
-            alert("Não foi possível cadastrar a coluna. Por favor, tente novamente mais tarde.");
         }
     } else {
-        console.error("O nome da coluna não pode estar vazio ou o boardId não está definido!");
+        alert("Sinto muito, não foi possível criar a coluna.");
+        
     }
 });
