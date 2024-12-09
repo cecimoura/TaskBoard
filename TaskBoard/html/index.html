@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="/TaskBoard/styles/index.css">
   <link rel="stylesheet" href="/TaskBoard/styles/kanbanBoards.css">
 </head>
+
 <body>
   <header id="cabecalho">
     <h1>TaskBoard</h1>
@@ -19,8 +20,8 @@
     </div>
   </header>
 
-  <nav class="navbar">
-    <div id="container-botoes">
+<nav class="navbar">
+  <div id="container-botoes">
       <div class="dropdown" id="dropdown">
         <button class="dropbtn" id="dropbtn" type="button">Suas Colunas</button>
         <ul class="dropdown-content" id="dropdown-content">
@@ -28,8 +29,8 @@
         </ul>
       </div><!--Fim da div dropdown-->
       
-    <button id="addColumnButton">+ Adicionar Coluna</button>
-    <!-- Modal -->
+     <button id="addColumnButton">+ Adicionar Coluna</button>
+     <!-- Modal -->
     <div id="myModal" class="modal">
       <div class="modal-content">
           <span id="closeButton" class="close">&times;</span>
@@ -41,14 +42,14 @@
               <button type="submit" id="submitColumnButton">Adicionar Coluna</button>
           </form>
       </div>
-  </div>
+    </div><!--Fim da div myModal-->
       
-      <div class="container-switch" id="container-switch">
+      <div class="container-switch" id="container-switch"> <!--Toggle q muda o tema do site-->
         <div class="indicador"></div>
       </div>
-     
-    </div><!--Fim da div container-botoes-->
-  </nav>
+
+  </div><!--Fim da div container-botoes-->
+</nav>
 
   <main id="columnsContainer" class="columns">
     <!-- Exemplo de Coluna -->
@@ -84,7 +85,7 @@
   <script src="/TaskBoard/scripts/pages/logout.js"></script>
   <script type="module" src="/TaskBoard/scripts/pages/darkMode.js"></script>
   <script src="/TaskBoard/scripts/pages/dropdown.js"></script>
-  <script src="/TaskBoard/scripts/pages/kanbanBoard.js"></script>
+ 
   <script type="module" src="/TaskBoard/scripts/pages/adicionarColuna.js"></script>
  
 </body>

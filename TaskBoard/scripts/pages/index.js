@@ -1,3 +1,5 @@
+import { API_BASE_URL } from "../../config/apiConfig.js";
+import {  getFromLocalStorage, saveToLocalStorage } from "../utils/storage.js";
 
 
 // Função para mostrar a saudação com o nome do usuário
@@ -18,6 +20,7 @@ function mostrarBoasVindas() {
 
 // Chama a função para exibir as boas-vindas quando a página carregar
 document.addEventListener('DOMContentLoaded', mostrarBoasVindas);
+
 
 
   
